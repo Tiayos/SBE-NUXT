@@ -1,0 +1,51 @@
+{
+  "app": {
+    "navbar": {
+      "title": "Sistema de bienestar estudiantil"
+    },
+    "footer": {
+      "title": "Universidad Politécnica Salesiana {year}. Derechos Reservados."
+    },
+    "label":{
+      "seleccione": "Seleccione",
+      "si": "Si",
+      "no": "No"
+    }
+  },
+
+  "ficha": {
+    "tituloGeneral":"FICHA SOCIOECONÓMICA AMPLIADA",
+    "tituloGeneralDescripcion" : "La presente información incluye la relación entre el estudiante con su grupo familiar. Se considera grupo familiar a las personas que, “viven bajo el mismo techo y comen de la misma olla”, pueden incluir a sus padres, hermanos, cónyuges, hijos, tíos, etc.; siempre y cuando, vivan de forma habitual en la misma residencia y que aporten y/o dependan de la economía familiar.",
+    "tituloDatosEstudiante": "1. DATOS PERSONALES DEL ESTUDIANTE",
+    "tituloDatosDomicilio" : "2. DATOS DE DOMICILIO",
+    "datosEstudiante":{
+      "identificacion": "Nro. identificación",
+      "becaAsignado": "Nivel de beca asignado",
+      "nombres": "Apellidos y Nombres",
+      "estadoCivil": "Estado civil",
+      "correo": "Correo Institucional",
+      "tipoSangre": "Tipo de sangre",
+      "etnia": "Etnia",
+      "nacionalidad": "Nacionalidad o Pueblo",
+      "institucionEducativa": "Institución educativa de procedencia",
+      "tipoInstitucion" : "Tipo de institución educativa"
+    },
+    "datosDomicilio": {
+      "titulo21": "2.1 Indique la dirección donde usted vive mientras se encuentra estudiando",
+      "pais": "País",
+      "ciudad": "Ciudad (Cantón)",
+      "parroquia": "Parroquia",
+      "tipoParroquia": "Tipo de parroquia",
+      "barrio": "Barrio (o sector)",
+      "direccion": "Dirección",
+      "tlfDomicilio": "Telf. Domicilio",
+      "tlfCelular": "Telf. Celular",
+      "whatsapp": "Whatsapp",
+      "correoPersonal": "Correo electrónico personal",
+      "correoInstitucional": "Correo electrónico institucional",
+      "titulo22": "2.2 ¿Usted reside durante sus estudios en otro lugar diferente al de su grupo familiar?",
+      "subtitle22": "Dirección donde vive el grupo familiar (solo si es diferente a la ciudad, barrio o sector durante los estudios)"
+
+    }
+  }
+}

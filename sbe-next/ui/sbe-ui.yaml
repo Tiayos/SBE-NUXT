@@ -1,0 +1,51 @@
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: gitlab-pull-secret
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS5naXRsYWIuY29tIjp7ImF1dGgiOiJabTF2Ym5SaGJIWnZienBuYkhCaGRDMW1ibTVIZFZweGMyUjBOMUZYUlRKNlJFZGthUT09In19fQ==
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sbe-ui
+  labels:
+    app: sbe-ui
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: sbe-ui
+  type: ClusterIP   # Cambiado de ClusterIP a LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sbe-ui
+  labels:
+    app: sbe-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sbe-ui
+  template:
+    metadata:
+      labels:
+        app: sbe-ui
+    spec:
+      containers:
+        - name: sbe-ui
+          image: registry.gitlab.com/ups-dev/development/web/sbe-next:sbe-ui-0.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: VITE_API_URL
+              value: "https://sbe-svc.ups.edu.ec/v1"
+      nodeSelector:
+        kubernetes.io/hostname: clkbrnts-02

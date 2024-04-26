@@ -1,0 +1,31 @@
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: gitlab-pull-secret
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS5naXRsYWIuY29tIjp7ImF1dGgiOiJabTF2Ym5SaGJIWnZienBuYkhCaGRDMW1ibTVIZFZweGMyUjBOMUZYUlRKNlJFZGthUT09In19fQ==
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sol-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sol-svc
+  template:
+    metadata:
+      labels:
+        app: sol-svc
+    spec:
+      containers:
+        - name: sol-svc
+          image: registry.gitlab.com/ups-dev/development/web/sbe-next:sol-svc-0.2
+      nodeSelector:
+        kubernetes.io/hostname: clkbrnts-02
+      imagePullSecrets:
+        - name: gitlab-pull-secret

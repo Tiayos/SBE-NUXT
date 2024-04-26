@@ -1,0 +1,36 @@
+{
+  "version": "0.0.0",
+  "name": "@ec.edu.ups/sbe",
+  "author": "Tiago",
+  "homepage": "https://www.ups.edu.ec/",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "8.0.0-beta.8",
+    "@types/vue": "^2.0.0",
+    "nuxt": "^3.2.0",
+    "sass": "^1.58.0"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.7",
+    "@ups-dev/freya-nuxt": "^0.2.7",
+    "@vee-validate/i18n": "^4.8.6",
+    "@vee-validate/rules": "^4.7.4",
+    "nuxt-breakpoint": "^1.0.0",
+    "nuxt-breakpoints": "^1.1.9",
+    "pinia": "^2.0.32",
+    "primeflex": "^3.3.0",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.23.0",
+    "vee-validate": "^4.8.6",
+    "vuelidate": "^0.7.7",
+    "yup": "^1.1.1"
+
+  }
+}
