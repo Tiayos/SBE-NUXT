@@ -44,8 +44,24 @@
       "correoPersonal": "Correo electrónico personal",
       "correoInstitucional": "Correo electrónico institucional",
       "titulo22": "2.2 ¿Usted reside durante sus estudios en otro lugar diferente al de su grupo familiar?",
-      "subtitle22": "Dirección donde vive el grupo familiar (solo si es diferente a la ciudad, barrio o sector durante los estudios)"
-
+      "subtitle22": "Dirección donde vive el grupo familiar (solo si es diferente a la ciudad, barrio o sector durante los estudios)",
+      "titulo23": "2.3 Indique con qué medio de transporte se moviliza con mayor frecuencia para ir a la Universidad Politécnica Salesiana *Escoja una sola opción",
+      "transporte":"Transporte",
+      "bus":"Bus",
+      "taxiRuta": "Taxi-ruta (carrera compartida)",
+      "metro": "Metro",
+      "trole": "Trole",
+      "taxi": "Taxi",
+      "ecovia": "Ecovía",
+      "tranvia": "Tranvía",
+      "camioneta": "Camioneta (Servicio de alquiler)",
+      "vehiculoPropio": "VehiculoPropio",
+      "metrovia": "Metrovía",
+      "bicicleta": "Bicicleta",
+      "moto": "Moto",
+      "aerovia": "Aerovía",
+      "otroEspecifique": "Otro especifique"
+      
     }
   }
 }

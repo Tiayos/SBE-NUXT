@@ -6,20 +6,28 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
     const cedula = ref<string>("");
 
     const sbeCamposWrapper = ref<SbeCamposWrapper>({
+        pais: undefined,
+        ciudad: undefined,
+        parroquia: undefined,
         barrio: '',
         direccion: '',
         tlfDomicilio: '',
         tlfCelular: '',
         whatsapp: '',
         correoPersonal: '',
-        correoInstitucional: ''
+        correoInstitucional: '',
+        paisEstudio: undefined,
+        ciudadEstudio: undefined,
+        parroquiaEstudio: undefined,
+        barrioEstudio: '',
+        direccionEstudiante: '',
     })
 
     const sbeParametros = ref<SbeParametros>({
-        pais: undefined,
-        ciudad: undefined,
-        parroquia: undefined,
-        tipoParroquia: undefined
+        tipoParroquia: undefined,
+        resideOtroLugar: undefined,
+        tipoParroquiaEstudio: undefined,
+        frecuenciaTransporte: undefined
     })
 
     return {

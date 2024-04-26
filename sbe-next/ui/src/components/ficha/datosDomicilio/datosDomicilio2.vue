@@ -98,9 +98,7 @@
     </FCard>
   </FCardSection>
 
-  <FichaDatosDomicilioDatosDomicilio3
-    style="margin-top: 0px"
-  ></FichaDatosDomicilioDatosDomicilio3>
+  <FichaDatosDomicilioDatosDomicilio3></FichaDatosDomicilioDatosDomicilio3>
 </template>
 <script setup lang="ts">
 const {

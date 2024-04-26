@@ -155,9 +155,7 @@
           </FVerticalStack>
         </FCardSection>
 
-        <FichaDatosDomicilioDatosDomicilio2
-          style="margin-top: 0px"
-        ></FichaDatosDomicilioDatosDomicilio2>
+        <FichaDatosDomicilioDatosDomicilio2></FichaDatosDomicilioDatosDomicilio2>
       </AccordionTab>
     </Accordion>
   </FCard>
