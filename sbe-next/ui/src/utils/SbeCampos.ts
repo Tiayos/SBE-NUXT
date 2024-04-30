@@ -15,5 +15,9 @@ interface SbeCamposWrapper {
     parroquiaEstudio?: number;
     barrioEstudio: string;
     direccionEstudiante: string;
+    
+    otraFrecuenciaEspecifique: string;
+    
+    numeroMiembros?: number;
 
 }

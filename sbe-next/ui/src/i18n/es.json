@@ -18,6 +18,7 @@
     "tituloGeneralDescripcion" : "La presente información incluye la relación entre el estudiante con su grupo familiar. Se considera grupo familiar a las personas que, “viven bajo el mismo techo y comen de la misma olla”, pueden incluir a sus padres, hermanos, cónyuges, hijos, tíos, etc.; siempre y cuando, vivan de forma habitual en la misma residencia y que aporten y/o dependan de la economía familiar.",
     "tituloDatosEstudiante": "1. DATOS PERSONALES DEL ESTUDIANTE",
     "tituloDatosDomicilio" : "2. DATOS DE DOMICILIO",
+    "tituloDatosEconomicos": "3. DATOS ECONÓMICOS DEL GRUPO FAMILIAR",
     "datosEstudiante":{
       "identificacion": "Nro. identificación",
       "becaAsignado": "Nivel de beca asignado",
@@ -45,7 +46,7 @@
       "correoInstitucional": "Correo electrónico institucional",
       "titulo22": "2.2 ¿Usted reside durante sus estudios en otro lugar diferente al de su grupo familiar?",
       "subtitle22": "Dirección donde vive el grupo familiar (solo si es diferente a la ciudad, barrio o sector durante los estudios)",
-      "titulo23": "2.3 Indique con qué medio de transporte se moviliza con mayor frecuencia para ir a la Universidad Politécnica Salesiana *Escoja una sola opción",
+      "titulo23": "2.3 Indique con qué medio de transporte se moviliza con mayor frecuencia para ir a la Universidad Politécnica Salesiana * (Escoja una sola opción)",
       "transporte":"Transporte",
       "bus":"Bus",
       "taxiRuta": "Taxi-ruta (carrera compartida)",
@@ -60,8 +61,16 @@
       "bicicleta": "Bicicleta",
       "moto": "Moto",
       "aerovia": "Aerovía",
-      "otroEspecifique": "Otro especifique"
+      "otroEspecifique": "Otro especifique",
+      "frecuenciaTransporte": "Frecuencia del transporte",
+      "diario": "Diario",
+      "menosdeTres":"Menos de 3 veces por semana",
+      "masdeTres":"Más de 3 veces por semana"
       
+    },
+    "datosEconomicos":{
+      "titulo31": "3.1 Indique el número de miembros de su grupo familiar inclúyendose usted",
+      "numeroMiembros": "Número de miembros"
     }
   }
 }
