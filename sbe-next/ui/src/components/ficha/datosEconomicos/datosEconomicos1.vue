@@ -31,6 +31,8 @@
             ></FTextField>
           </FHorizontalGrid>
         </FCardSection>
+
+        <FichaDatosEconomicosDatosEconomicos2></FichaDatosEconomicosDatosEconomicos2>
       </AccordionTab>
     </Accordion>
   </FCard>
