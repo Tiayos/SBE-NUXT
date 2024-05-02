@@ -60,19 +60,19 @@ export default defineNuxtConfig({
             // SOL_FICHA_EMAIL: 'https://sol-svc.ups.edu.ec/v1/email'
     
             //* LOCALMENTE
-            SBE_FICHA: '/sbe/ficha',
-            SBE_ALUMNO: '/sbe/insAlumno',
-            SBE_DOMICILIO: '/sbe/datosDomicilio',
-            SBE_VALORES_CAMPO: '/sbe/valorCampo',
-            SBE_VALORES_PARAMETRO: '/sbe/valorParametros',
-            SBE_DATOS_ECONOMICOS: '/sbe/datosEconomicos',            
-            SBE_INFORME:'/sbe/informes',
-            SBE_PERIODO:'/sbe/periodoLectivo',
-            SBE_LOGIN:'/sbe/login',            
-            SBE_DOC_SOLICITADOS: '/sbe/documentosSolicitados',
-            SBE_VALORACION: '/sbe/valoracionFicha',
+            SBE_FICHA: '/sbe/api/v1/ficha',
+            SBE_ALUMNO: '/sbe/api/v1/insAlumno',
+            SBE_DOMICILIO: '/sbe/api/v1/datosDomicilio',
+            SBE_VALORES_CAMPO: '/sbe/api/v1/valorCampo',
+            SBE_VALORES_PARAMETRO: '/sbe/api/v1/valorParametros',
+            SBE_SITUACION_FAMILIAR: '/sbe/api/v1/situacionFamiliar',            
+            SBE_INFORME:'/sbe/api/v1/informes',
+            SBE_PERIODO:'/sbe/api/v1/periodoLectivo',
+            SBE_LOGIN:'/sbe/api/v1/login',            
+            SBE_DOC_SOLICITADOS: '/sbe/api/v1/documentosSolicitados',
+            SBE_VALORACION: '/sbe/api/v1/valoracionFicha',
             SOL_FICHA_HABILITADA: '/sol/solicitudEvento',
-            SOL_FICHA_EMAIL: '/sol/email'
+            SOL_FICHA_EMAIL: '/sol/api/v1/email'
 
    
         }
@@ -99,7 +99,7 @@ export default defineNuxtConfig({
             '/sbe': {
                 changeOrigin: true,
                 // target: 'https://sbe-svc.ups.edu.ec/v1',
-                target: 'http://localhost:8080/v1',
+                target: 'http://localhost:8080/sbe',
             },
             '/sol': {
                 changeOrigin: true,

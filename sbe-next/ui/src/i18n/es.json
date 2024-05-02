@@ -70,7 +70,17 @@
     },
     "datosEconomicos":{
       "titulo31": "3.1 Indique el número de miembros de su grupo familiar inclúyendose usted",
-      "numeroMiembros": "Número de miembros"
+      "numeroMiembros": "Número de miembros",
+      "titulo32": "3.2 Datos económicos de los miembros del grupo familiar",
+      "nuevoMiembroTittle": "Registrar nuevo miembro del grupo familiar",
+      "tipoIdentificacion": "Tipo de identificación",
+      "numeroIdentificacion": "Número de identificación",
+      "nombreCompleto": "Nombre Completo",
+      "fechaNacimiento": "Fecha de nacimiento",
+      "nivelIntruccion": "Nivel máximo de instrucción",
+      "parentesco": "Parentesco",
+      "tipoEmpresa": "Tipo de empresa en la que labora",
+      "ingresosMensuales": "Ingresos Mensuales"
     }
   }
 }

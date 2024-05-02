@@ -110,6 +110,7 @@ public class SbeSituacionFamiliarModel implements Serializable {
         this.sbeTipoEmpresaModel = new SbeTipoEmpresaModel(dto.sbeTipoEmpresaDTO().codigo());
     }
 
+
     @PrePersist
     public void prePersist(){
         this.audFechaAdicion = LocalDateTime.now();

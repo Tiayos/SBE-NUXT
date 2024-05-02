@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/datosDomicilio")
+@RequestMapping("/api/v1/datosDomicilio")
 public class DatosDomiclioController {
     @Autowired
     public IDatosDomicilioService datosDomicilioService;

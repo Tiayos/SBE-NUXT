@@ -9,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/valorParametros")
+@RequestMapping("/api/v1/valorParametros")
 public class ValorParametroFichaController {
 
     @Autowired

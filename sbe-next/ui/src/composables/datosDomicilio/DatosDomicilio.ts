@@ -1,6 +1,7 @@
-import { DatosDomicilioProjection } from "models/datosDomicilio/datosDomicilio.model";
-import { OpcionParametro } from "models/opcionesParametros/OpcionParametro.model";
+
 import sbeParametrosCodigosEnum from "@/utils/sbeParametrosCodigos";
+import { DatosDomicilioProjection } from "~/models/datosDomicilio/datosDomicilio.model";
+import { OpcionParametro } from "~/models/opcionesParametros/OpcionParametro.model";
 
 export const useDatosDomicilio = () => {
     //*Store

@@ -5,8 +5,7 @@ import ec.edu.ups.ins.entity.model.sbe.SbeParentescoModel;
 public record SbeParentescoDTO(
         Long codigo,
         String nombre,
-        @JsonProperty("codigo_parentesco") Long codigoParentesco
-
+        @JsonProperty("codigo_parentesco_leg") Long codigoParentesco
 
         )
 {

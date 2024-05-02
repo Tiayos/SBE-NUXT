@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/insAlumno")
+@RequestMapping("/api/v1/insAlumno")
 public class InsAlumnoController {
 
     @Autowired
@@ -17,18 +17,5 @@ public class InsAlumnoController {
     public InsAlumnoProjection datosEstudiante(@RequestParam String cedula){
         return insAlumnoService.getAlumnosByCedula(cedula);
     }
-
-//    //*Metodo para obtener el aluCodigo segun la cedula del estudiante
-//        @GetMapping("/obtenerAluCodigo")
-//    public ResponseEntity<Integer> obtenerAluCodigo(@RequestParam String cedula){
-//        ResponseEntity<Integer> response = insAlumnoService.obtenerAluCodigoSegunCedula(cedula);
-//        return response;
-//    }
-//
-//    @ExceptionHandler(MissingServletRequestParameterException.class)
-//    public ResponseEntity<Object> handleMissingParams(MissingServletRequestParameterException ex) {
-//        String mensaje = ex.getParameterName() + " es requerido";
-//        return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
-//    }
 
 }

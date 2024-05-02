@@ -18,6 +18,10 @@ export {
     useValorParametrosService,
 } from './services/useValoresParametros'
 
+export {
+    useDatosEconomicosService,
+} from './services/useDatosEconomicosService'
+
 //Composable
 
 export {
@@ -28,4 +32,7 @@ export {
     useDatosDomicilio,
 } from './datosDomicilio/DatosDomicilio'
 
+export {
+    useDatosEconomicos,
+} from './datosEconomicos/useDatosEconomicos'
 

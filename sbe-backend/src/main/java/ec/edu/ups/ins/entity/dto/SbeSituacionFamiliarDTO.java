@@ -2,6 +2,7 @@ package ec.edu.ups.ins.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ec.edu.ups.ins.entity.model.sbe.SbeSituacionFamiliarModel;
+import jakarta.annotation.Nullable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -30,11 +31,11 @@ public record SbeSituacionFamiliarDTO(
                 model.getSifTipoSituacion(),
                 model.getSifNumeroIdentificacion(),
                 model.getSfiIngresosMensuales(),
-                SbeEstadoCivilDTO.toDTO(model.getSbeEstadoCivilModel()),
-                SbeFichaSocioeconomicaDTO.toDTO(model.getSbeFichaSocioeconomicaModel()),
-                SbeInstruccionDTO.toDTO(model.getSbeInstruccionModel()),
-                SbeParentescoDTO.toDTO(model.getSbeParentescoModel()),
-                SbeTipoEmpresaDTO.toDTO(model.getSbeTipoEmpresaModel())
+                model.getSbeEstadoCivilModel() != null ? SbeEstadoCivilDTO.toDTO(model.getSbeEstadoCivilModel()) : null,
+                model.getSbeFichaSocioeconomicaModel() != null ? SbeFichaSocioeconomicaDTO.toDTO(model.getSbeFichaSocioeconomicaModel()) : null,
+                model.getSbeInstruccionModel() != null ? SbeInstruccionDTO.toDTO(model.getSbeInstruccionModel()) : null,
+                model.getSbeParentescoModel() != null ? SbeParentescoDTO.toDTO(model.getSbeParentescoModel()) : null,
+                model.getSbeTipoEmpresaModel() != null ? SbeTipoEmpresaDTO.toDTO(model.getSbeTipoEmpresaModel()) : null
         );
     }
 }

@@ -18,7 +18,6 @@ public record SbeFichaSocioeconomicaDTO(
         @JsonProperty("est_codigo") Long estCodigo,
         @JsonProperty("sol_codigo") Long solCodigo,
         @JsonProperty("tipo_ficha") SbeTipoFichaSocioeconomicaDTO sbeTipoFichaSocioeconomicaDTO
-
         )
 {
 
