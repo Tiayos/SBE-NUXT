@@ -303,6 +303,7 @@ const {
   saveMiembroFamiliar,
   obtenerMiembrosSituacionFamiliar,
   editMiembroFamiliar,
+  deleteMiembroFamiliar,
   toast,
 } = useDatosEconomicos();
 const activeCreateModal = ref<boolean>(false);
@@ -348,7 +349,7 @@ const handleChangeDeleteModal = (miembroSituacionFamiliar: SituacionFamiliar) =>
 };
 
 const confirmDelete = async () => {
-  await deleteBitacora(codigoBitacora.value);
+  await deleteMiembroFamiliar(codigoBitacora.value);
   await obtenerMiembrosSituacionFamiliar();
   toast.add({
     severity: "success",
