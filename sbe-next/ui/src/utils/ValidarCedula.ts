@@ -1,5 +1,5 @@
 
-export const validar = (cedula: string) => {
+export const validarCedula = (cedula: string) => {
 
    
   let cad = cedula;

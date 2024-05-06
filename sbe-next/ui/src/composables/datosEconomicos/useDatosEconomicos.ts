@@ -6,54 +6,80 @@ import { SituacionFamiliar } from '~/models/datosEconomicos/situacionFamiliar.mo
 import { Instruccion } from '~/models/datosEconomicos/instruccion.model';
 import { Parentesco } from '~/models/datosEconomicos/parentesco.model';
 import { TipoEmpresa } from '~/models/datosEconomicos/tipoEmpresa.model';
-import { EstadoCivil } from '~/models/datosEconomicos/estadoCivil.model';
-import { FichaSocioeconomica } from '~/models/datosEconomicos/fichaSocioeconomica.model';
+import { useToast } from "primevue/usetoast";
 
 export const useDatosEconomicos = () => {
     //*Store
     const storeClient = useDatosFichaStore();
-    const { sbeCamposWrapper, sbeParametros} = storeToRefs(storeClient)
+    const { sbeCamposWrapper, sbeParametros, miembroGrupoFamiliar} = storeToRefs(storeClient)
     //* Datos economicos 3.2 
-    const { getDatosEconomicosMiembrosFamiliares, getNivelInstruccion, getParentescos, getTipoEmpresa } = useDatosEconomicosService()
+    const { getDatosEconomicosMiembrosFamiliares, getNivelInstruccion, getParentescos, getTipoEmpresa,saveMiembroFamiliar, editMiembroFamiliar, deleteMiembroFamiliar } = useDatosEconomicosService()
     const datosEconomicosMiembrosFamiliarList = ref<SituacionFamiliar[]>([{} as SituacionFamiliar] )
     const nivelesInstruccionList = ref<Instruccion[]>([{} as Instruccion]);
     const parentescosList = ref<Parentesco[]>([{} as Parentesco]);
     const tipoEmpresaList = ref<TipoEmpresa[]>([{} as TipoEmpresa]);
-    const miembroGrupoFamiliar = ref<SituacionFamiliar>({
-        nombre_familiar:          "",
-        fecha_nacimiento:         new Date,
-        tipo_situacion:           "",
-        numero_identificacion:    "",
-        ingresos_mensuales:       0,
-        estado_civil:             {codigo: 0} as EstadoCivil,
-        ficha_socioeconomica:     {} as FichaSocioeconomica,
-        sbe_instruccionDTO:       {codigo: 0} as Instruccion,
-        sbe_parentescoDTO:        {codigo: 0} as Parentesco,
-        sbe_tipo_empresa:         {codigo: 0} as TipoEmpresa
-    });
+    const tipoIdentificacion = ref();
+    const toast = useToast();
+    
+    enum persistAction {
+        create,
+        edit,
+        view,
+        saveCreate,
+    }
+    const viewAction = ref<persistAction>();
 
     //*Validate
     const validateSituacionFamiliar = {
         nombre_familiar:          { required },
         fecha_nacimiento:         { required },
-        numero_identificacion:    { required },
+        numero_identificacion:    { requiredIf: ()=>{
+            if(tipoIdentificacion.value=='CEDULA'){
+                return validarCedula(miembroGrupoFamiliar.value.numero_identificacion)
+            }else{
+                if(miembroGrupoFamiliar.value.numero_identificacion == ''){
+                    return false
+                }else{
+                    return true
+                }
+            }
+        }},
         ingresos_mensuales:       { required },
-        sbe_instruccionDTO:       { required },
-        sbe_parentescoDTO:        { required },
-        sbe_tipo_empresa:         { required },
+        sbe_instruccionDTO:       { requiredIf: ()=>{
+            if(miembroGrupoFamiliar.value.sbe_instruccionDTO.codigo==undefined){
+                return false
+            }else{
+                return true
+            }
+        } },
+        sbe_parentescoDTO:        { requiredIf: ()=>{
+            if(miembroGrupoFamiliar.value.sbe_parentescoDTO.codigo==undefined){
+                return false
+            }else{
+                return true
+            }
+        } },
+        sbe_tipo_empresa:         { requiredIf: ()=>{
+            if(miembroGrupoFamiliar.value.sbe_tipo_empresa.codigo==undefined){
+                return false
+            }else{
+                return true
+            }
+        } },
     }
-    
     
     const v$ = useVuelidate(validateSituacionFamiliar, miembroGrupoFamiliar);
 
     onMounted(async() => {
-        datosEconomicosMiembrosFamiliarList.value = await getDatosEconomicosMiembrosFamiliares(137451);
+        obtenerMiembrosSituacionFamiliar();
         nivelesInstruccionList.value = await getNivelInstruccion();
         parentescosList.value = await getParentescos();
         tipoEmpresaList.value = await getTipoEmpresa();
-        console.log(tipoEmpresaList.value);
     })
 
+    const obtenerMiembrosSituacionFamiliar = async() =>{
+        datosEconomicosMiembrosFamiliarList.value = await getDatosEconomicosMiembrosFamiliares(137619);
+    }
 
     return {
         datosEconomicosMiembrosFamiliarList,
@@ -63,8 +89,15 @@ export const useDatosEconomicos = () => {
         miembroGrupoFamiliar,
         sbeCamposWrapper,
         sbeParametros,
-
-        v$
+        tipoIdentificacion,
+        viewAction,
+        persistAction,
+        v$,
+        saveMiembroFamiliar,
+        toast,
+        obtenerMiembrosSituacionFamiliar,
+        editMiembroFamiliar,
+        deleteMiembroFamiliar
     }
 
 }

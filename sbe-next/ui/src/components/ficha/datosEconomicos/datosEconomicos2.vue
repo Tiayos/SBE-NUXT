@@ -75,6 +75,29 @@
               bodyStyle="text-align: center;"
             >
             </Column>
+
+            <Column style="width: 10px">
+              <template #body="slotProps">
+                <FButton
+                  size="slim"
+                  :icon="PencilSolid"
+                  @click="prepareEdit(slotProps.data)"
+                  >Editar</FButton
+                >
+              </template>
+            </Column>
+            <Column style="width: 10px">
+              <template #body="slotProps">
+                <FButton
+                  size="slim"
+                  secondary
+                  :icon="TrashCanSolid"
+                  @click="handleChangeDeleteModal(slotProps.data)"
+                >
+                  Eliminar</FButton
+                >
+              </template>
+            </Column>
           </DataTable>
 
           <FModal
@@ -120,10 +143,13 @@
                   />
                 </FLabelled>
 
+                Número de identificación
                 <FTextField
                   type="text"
                   v-model="miembroGrupoFamiliar.numero_identificacion"
-                  :label="$t('ficha.datosEconomicos.numeroIdentificacion')"
+                  :label="
+                    v$?.numero_identificacion.$error ? 'Este campo es requerido' : ''
+                  "
                   :error="v$?.numero_identificacion.$error"
                   :required-indicator="true"
                   autoComplete="off"
@@ -135,7 +161,7 @@
                   type="date"
                   :error="v$?.fecha_nacimiento.$error"
                   :required-indicator="true"
-                  v-model="miembroGrupoFamiliar.fecha_nacimiento"
+                  v-model="fechaNacimiento"
                 />
                 <FLabelled
                   id="nivelInstruccion"
@@ -220,6 +246,35 @@
               </FVerticalStack>
             </FModalSection>
           </FModal>
+
+          <FModal
+            v-model="deleteModal"
+            title=""
+            title-hidden
+            :primaryAction="{
+              content: 'Eliminar',
+              onAction: confirmDelete,
+            }"
+            :secondaryActions="[
+              {
+                content: 'Cancelar',
+                onAction: changeDeleteModal,
+              },
+            ]"
+          >
+            <FModalSection title-hidden style="text-align: center">
+              <FVerticalStack gap="4">
+                <FText
+                  as="h5"
+                  variant="headingMd"
+                  :font-weight="'semibold'"
+                  style="text-align: center"
+                >
+                  {{ $t("app.sgadNuxt.sumilla.eliminar") }}
+                </FText>
+              </FVerticalStack>
+            </FModalSection>
+          </FModal>
         </FCard>
       </FLayoutSection>
     </FFormLayout>
@@ -228,8 +283,12 @@
 <script setup lang="ts">
 import { PlusSolid, PencilSolid, TrashCanSolid } from "@ups-dev/freya-icons";
 import { useField, useForm } from "vee-validate";
-import { required } from "@vee-validate/rules";
 import { SituacionFamiliar } from "~/models/datosEconomicos/situacionFamiliar.model";
+import { Instruccion } from "~/models/datosEconomicos/instruccion.model";
+import { Parentesco } from "~/models/datosEconomicos/parentesco.model";
+import { TipoEmpresa } from "~/models/datosEconomicos/tipoEmpresa.model";
+import { EstadoCivil } from "~/models/datosEconomicos/estadoCivil.model";
+import { FichaSocioeconomica } from "~/models/datosEconomicos/fichaSocioeconomica.model";
 
 const {
   datosEconomicosMiembrosFamiliarList,
@@ -237,34 +296,109 @@ const {
   parentescosList,
   tipoEmpresaList,
   miembroGrupoFamiliar,
+  tipoIdentificacion,
+  persistAction,
+  viewAction,
   v$,
+  saveMiembroFamiliar,
+  obtenerMiembrosSituacionFamiliar,
+  editMiembroFamiliar,
+  toast,
 } = useDatosEconomicos();
-const viewAction = ref<persistAction>();
 const activeCreateModal = ref<boolean>(false);
 const { handleSubmit, errors, resetForm, resetField } = useForm();
 const tiposIdentificacion = ref([{ name: "CEDULA" }, { name: "PASAPORTE" }]);
-const tipoIdentificacion = ref();
-
-enum persistAction {
-  create,
-  edit,
-  view,
-}
+const fechaNacimiento = ref<string>("");
+const deleteModal = ref<boolean>(false);
+const codigoBitacora = ref<Number>(0);
 
 const prepareCreate = () => {
-  v$.value.$silentErrors;
   miembroGrupoFamiliar.value = {} as SituacionFamiliar;
+  miembroGrupoFamiliar.value.sbe_instruccionDTO = {} as Instruccion;
+  miembroGrupoFamiliar.value.sbe_parentescoDTO = {} as Parentesco;
+  miembroGrupoFamiliar.value.sbe_tipo_empresa = {} as TipoEmpresa;
+  miembroGrupoFamiliar.value.estado_civil = { codigo: 7 } as EstadoCivil;
+  miembroGrupoFamiliar.value.ficha_socioeconomica = {
+    fis_codigo: 137619,
+  } as FichaSocioeconomica;
+  miembroGrupoFamiliar.value.tipo_situacion = "V";
   viewAction.value = persistAction.create;
   handleChangeCreateModal();
 };
-const handleChangeCreateModal = () => {
+
+const prepareEdit = async (miembroSituacionFamiliar: SituacionFamiliar) => {
+  miembroGrupoFamiliar.value = { ...miembroSituacionFamiliar };
+  if (miembroGrupoFamiliar.value.fecha_nacimiento != null) {
+    fechaNacimiento.value = miembroGrupoFamiliar.value.fecha_nacimiento.toString();
+  }
   activeCreateModal.value = !activeCreateModal.value;
+  viewAction.value = persistAction.edit;
 };
 
-const onSubmited = handleSubmit((values) => {
+const handleChangeCreateModal = () => {
+  activeCreateModal.value = !activeCreateModal.value;
+  v$.value.$silentErrors;
+  v$.value.$reset;
+  resetForm;
+};
+
+const handleChangeDeleteModal = (miembroSituacionFamiliar: SituacionFamiliar) => {
+  deleteModal.value = !deleteModal.value;
+  codigoBitacora.value = miembroSituacionFamiliar.codigo;
+};
+
+const confirmDelete = async () => {
+  await deleteBitacora(codigoBitacora.value);
+  await obtenerMiembrosSituacionFamiliar();
+  toast.add({
+    severity: "success",
+    summary: "Situación Familiar",
+    detail: `Se ha eliminado el miembro familiar correctamente`,
+    life: 5000,
+  });
+  changeDeleteModal();
+};
+
+const changeDeleteModal = () => {
+  deleteModal.value = !deleteModal.value;
+};
+
+watch(
+  () => fechaNacimiento.value,
+  (newValue, oldValue) => {
+    miembroGrupoFamiliar.value.fecha_nacimiento = toDate(fechaNacimiento.value);
+  }
+);
+
+const toDate = (date: string) => {
+  const dateParts = date.split("-");
+  const year = parseInt(dateParts[0]);
+  const month = parseInt(dateParts[1]) - 1; // Month is zero-based
+  const day = parseInt(dateParts[2]);
+  return new Date(year, month, day);
+};
+
+const onSubmited = handleSubmit(async (values) => {
   v$.value.$validate();
   if (!v$.value.$error) {
-    console.log("NO HAY ERRORES");
+    handleChangeCreateModal();
+
+    if (viewAction.value == persistAction.create) {
+      await saveMiembroFamiliar(miembroGrupoFamiliar.value);
+    } else if (viewAction.value == persistAction.edit) {
+      await editMiembroFamiliar(
+        miembroGrupoFamiliar.value,
+        miembroGrupoFamiliar.value.codigo
+      );
+    }
+
+    await obtenerMiembrosSituacionFamiliar();
+    toast.add({
+      severity: "success",
+      summary: "Situación Familiar",
+      detail: `Se ha agregado un nuevo miembro familiar correctamente`,
+      life: 5000,
+    });
   }
 });
 </script>

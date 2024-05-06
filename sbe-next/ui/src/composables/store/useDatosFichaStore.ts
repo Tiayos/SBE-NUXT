@@ -1,9 +1,11 @@
-import { insAlumnoProjection } from 'models/datosPersonales/alumno.model';
 import { defineStore } from 'pinia';
+import { SituacionFamiliar } from '~/models/datosEconomicos/situacionFamiliar.model';
+import { insAlumnoProjection } from '~/models/datosPersonales/alumno.model';
 
 export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
     const insAlumno = ref<insAlumnoProjection>({} as insAlumnoProjection)
     const cedula = ref<string>("");
+    const miembroGrupoFamiliar = ref<SituacionFamiliar>({} as SituacionFamiliar);
 
     const sbeCamposWrapper = ref<SbeCamposWrapper>({
         pais: undefined,
@@ -21,20 +23,23 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
         parroquiaEstudio: undefined,
         barrioEstudio: '',
         direccionEstudiante: '',
+        otraFrecuenciaEspecifique: '',
+        numeroMiembros: undefined
     })
 
     const sbeParametros = ref<SbeParametros>({
         tipoParroquia: undefined,
         resideOtroLugar: undefined,
         tipoParroquiaEstudio: undefined,
-        frecuenciaTransporte: undefined
+        tipoTransporte: undefined
     })
 
     return {
         insAlumno,
         cedula,
         sbeCamposWrapper,
-        sbeParametros
+        sbeParametros,
+        miembroGrupoFamiliar
     }
 
 })

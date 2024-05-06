@@ -91,6 +91,7 @@ const logo = {
         <LazyNavigationFooter />
       </FLayoutSection> -->
     </FFrame>
+    <Toast />
   </FAppProvider>
 </template>
 

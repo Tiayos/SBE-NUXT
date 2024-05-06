@@ -5,6 +5,7 @@ import { Parentesco } from "./parentesco.model";
 import { TipoEmpresa } from "./tipoEmpresa.model";
 
 export interface SituacionFamiliar {
+    codigo:                   number
     nombre_familiar:          string;
     fecha_nacimiento:         Date;
     tipo_situacion:           string;

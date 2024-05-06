@@ -1,8 +1,8 @@
-import { EstadoCivil } from 'models/datosEconomicos/estadoCivil.model';
+import { EstadoCivil } from '~/models/datosEconomicos/estadoCivil.model';
 import { SituacionFamiliar } from '../../models/datosEconomicos/situacionFamiliar.model';
-import { Parentesco } from 'models/datosEconomicos/parentesco.model';
-import { Instruccion } from 'models/datosEconomicos/instruccion.model';
-import { TipoEmpresa } from 'models/datosEconomicos/tipoEmpresa.model';
+import { Parentesco } from '~/models/datosEconomicos/parentesco.model';
+import { Instruccion } from '~/models/datosEconomicos/instruccion.model';
+import { TipoEmpresa } from '~/models/datosEconomicos/tipoEmpresa.model';
 
 export const useDatosEconomicosService = () => {
     const config = useRuntimeConfig()
@@ -54,12 +54,58 @@ export const useDatosEconomicosService = () => {
         }
     }
 
+    
+    const saveMiembroFamiliar = async (situacionFamiliar: SituacionFamiliar) => {
+        try {
+          return await $fetch<SituacionFamiliar>(apiUrl,
+                {
+                    method: 'POST',
+                    body: situacionFamiliar,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+        } catch (error) {
+            // logger.error('saveSituacionFamiliar', error)
+            throw error
+
+        }
+    }
+    const editMiembroFamiliar = async (miembroSituacionFamiliar: SituacionFamiliar, id:number) => {
+        try { 
+                await $fetch(apiUrl+`?id=${id}`,
+                {
+                    method: 'PUT',
+                    body: JSON.stringify(miembroSituacionFamiliar),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+        } catch (error) {
+            throw error
+        }
+    }
+
+    const deleteMiembroFamiliar = async(codigo: Number)=>{
+        try {
+            await $fetch(`${apiUrl}?codigo=${codigo}`,{
+                method: 'DELETE'
+            })
+        } catch (error) {
+            throw error;
+        }
+    }
+
     return {
         getDatosEconomicosMiembrosFamiliares,
         getTipoEmpresa,
         getNivelInstruccion,
         getEstadoCivil,
-        getParentescos
-
+        getParentescos,
+        saveMiembroFamiliar,
+        editMiembroFamiliar,
+        deleteMiembroFamiliar
     }
 }
