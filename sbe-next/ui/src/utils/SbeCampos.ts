@@ -19,5 +19,17 @@ interface SbeCamposWrapper {
     otraFrecuenciaEspecifique: string;
     
     numeroMiembros?: number;
+    totalIngresosMensuales?: number;
+    valorTotalMensualOtrosIngresos?:    number;
+
+    opcionViveGrupoFamiliarPropiedad?: number
+    opcionViveGrupoFamiliarVehiculos?: number
+    numeroPropiedades?: number;
+    numeroVehiculos?: number;
+
+    costoTotalPropiedades?: number;
+    costoTotalVehiculos?: number;
+    total?: number;
+
 
 }

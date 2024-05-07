@@ -67,13 +67,10 @@
               bodyStyle="text-align: center;"
             >
             </Column>
-            <Column
-              field="ingresos_mensuales"
-              header="Ingresos económicos mensuales"
-              style="width: 10px"
-              headerStyle="text-align: center;"
-              bodyStyle="text-align: center;"
-            >
+            <Column field="ingresos_mensuales" header="Ingresos económicos mensuales">
+              <template #body="slotProps">
+                {{ formatCurrency(slotProps.data.ingresos_mensuales) }}
+              </template>
             </Column>
 
             <Column style="width: 10px">
@@ -98,6 +95,30 @@
                 >
               </template>
             </Column>
+
+            <template #footer>
+              <FHorizontalStack gap="4" align="end" block-align="end">
+                <FText as="h3" variant="bodyLg" :font-weight="'bold'">
+                  {{
+                    $t("ficha.datosEconomicos.totalIngresosMiembrosFamiliares")
+                  }}:</FText
+                >
+                <InputNumber
+                  v-model="sbeCamposWrapper.totalIngresosMensuales"
+                  :disabled="true"
+                  inputId="totalIngresosMiembrosFamiliares"
+                  style="
+                    width: 200px;
+                    height: 2.25rem;
+                    text-align: right !important;
+                    overflow: hidden;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                  "
+                />
+              </FHorizontalStack>
+            </template>
           </DataTable>
 
           <FModal
@@ -270,7 +291,7 @@
                   :font-weight="'semibold'"
                   style="text-align: center"
                 >
-                  {{ $t("app.sgadNuxt.sumilla.eliminar") }}
+                  {{ $t("ficha.datosEconomicos.eliminar") }}
                 </FText>
               </FVerticalStack>
             </FModalSection>
@@ -278,6 +299,7 @@
         </FCard>
       </FLayoutSection>
     </FFormLayout>
+    <FichaDatosEconomicosDatosEconomicos321></FichaDatosEconomicosDatosEconomicos321>
   </FCard>
 </template>
 <script setup lang="ts">
@@ -305,13 +327,23 @@ const {
   editMiembroFamiliar,
   deleteMiembroFamiliar,
   toast,
+  sbeCamposWrapper,
 } = useDatosEconomicos();
 const activeCreateModal = ref<boolean>(false);
 const { handleSubmit, errors, resetForm, resetField } = useForm();
 const tiposIdentificacion = ref([{ name: "CEDULA" }, { name: "PASAPORTE" }]);
 const fechaNacimiento = ref<string>("");
 const deleteModal = ref<boolean>(false);
-const codigoBitacora = ref<Number>(0);
+const codigoMiembroFamiliar = ref<Number>(0);
+
+const formatCurrency = (value: any) => {
+  return (
+    "$" +
+    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" })
+      .format(value)
+      .slice(1)
+  );
+};
 
 const prepareCreate = () => {
   miembroGrupoFamiliar.value = {} as SituacionFamiliar;
@@ -345,11 +377,11 @@ const handleChangeCreateModal = () => {
 
 const handleChangeDeleteModal = (miembroSituacionFamiliar: SituacionFamiliar) => {
   deleteModal.value = !deleteModal.value;
-  codigoBitacora.value = miembroSituacionFamiliar.codigo;
+  codigoMiembroFamiliar.value = miembroSituacionFamiliar.codigo;
 };
 
 const confirmDelete = async () => {
-  await deleteMiembroFamiliar(codigoBitacora.value);
+  await deleteMiembroFamiliar(codigoMiembroFamiliar.value);
   await obtenerMiembrosSituacionFamiliar();
   toast.add({
     severity: "success",

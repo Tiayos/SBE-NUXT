@@ -80,7 +80,32 @@
       "nivelIntruccion": "Nivel máximo de instrucción",
       "parentesco": "Parentesco",
       "tipoEmpresa": "Tipo de empresa en la que labora",
-      "ingresosMensuales": "Ingresos Mensuales"
+      "ingresosMensuales": "Ingresos Mensuales",
+      "eliminar": "Está seguro que desea eliminar este registro",
+      "totalIngresosMiembrosFamiliares": "Total Ingresos",
+      "titulo321": "¿Tiene algún otro ingreso mensual que no haya sido registrado en el ítem anterior?",
+      "subtitle321": "*Puede escoger varias opciones",
+      "recibeDinero": "Recibe dinero desde otro país",
+      "utilidades": "Utilidades",
+      "ayudasFamiliares": "Ayudas Familiares",
+      "comercioInformal": "Ingreso por comercio informal",
+      "arriendos": "Arriendos",
+      "pensionAlimenticia": "Pensión alimenticia",
+      "pensionJubilacion": "Pensión por jubilación",
+      "montepio": "Montepío",
+      "bonosEstatales": "Bonoes estatales",
+      "inversionesBancarias": "Inversiones bancarias (por ejemplo: pólizas, intereses ganados en cuentas, acciones)",
+      "otros": "Otros (especifique)",
+      "valorTotal": "Valor total mensual de los otros ingresos",
+      "titulo33": "3.3 Propiedades Inmobiliarias y Varios",
+      "numeroPropiedades": "Número de propiedades inmobiliarias (sin considerar la vivienda familiar): casas, terrenos productivos, casas renteras, etc. (ESCOJA UNA OPCIÓN)",
+      "numeroVehiculos": "Número de vehículos (sin considerar vehículos de trabajo): transporte de alimentos, transporte de personas, transporte de ganado, etc. (ESCOJA UNA OPCIÓN)",
+      "viveSolo": "Cuando están a su nombre (siempre y cuando usted viva solo o usted tenga pareja y/o hijos).",
+      "viveConGrupo": "Cuando su grupo familiar es el propietario (siempre y cuando usted viva con su grupo familiar).",
+      "costoTotalPropiedades": "Costo total de propiedades inmobiliarias",
+      "costoTotalVehiculos": "Costo total de vehículos",
+      "total": "Total"
+    
     }
   }
 }

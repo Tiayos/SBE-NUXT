@@ -13,14 +13,16 @@ export const useDatosEconomicos = () => {
     const storeClient = useDatosFichaStore();
     const { sbeCamposWrapper, sbeParametros, miembroGrupoFamiliar} = storeToRefs(storeClient)
     //* Datos economicos 3.2 
-    const { getDatosEconomicosMiembrosFamiliares, getNivelInstruccion, getParentescos, getTipoEmpresa,saveMiembroFamiliar, editMiembroFamiliar, deleteMiembroFamiliar } = useDatosEconomicosService()
+    const { getDatosEconomicosMiembrosFamiliares, getNivelInstruccion, getParentescos, 
+        getTipoEmpresa,saveMiembroFamiliar, editMiembroFamiliar, deleteMiembroFamiliar } = useDatosEconomicosService()
     const datosEconomicosMiembrosFamiliarList = ref<SituacionFamiliar[]>([{} as SituacionFamiliar] )
     const nivelesInstruccionList = ref<Instruccion[]>([{} as Instruccion]);
     const parentescosList = ref<Parentesco[]>([{} as Parentesco]);
     const tipoEmpresaList = ref<TipoEmpresa[]>([{} as TipoEmpresa]);
     const tipoIdentificacion = ref();
     const toast = useToast();
-    
+    const selectOtrosIngresosList = ref<number[]>([]);
+
     enum persistAction {
         create,
         edit,
@@ -78,7 +80,13 @@ export const useDatosEconomicos = () => {
     })
 
     const obtenerMiembrosSituacionFamiliar = async() =>{
+        let sumaIngresos = 0;
         datosEconomicosMiembrosFamiliarList.value = await getDatosEconomicosMiembrosFamiliares(137619);
+        for (let i = 0; i < datosEconomicosMiembrosFamiliarList.value.length; i++) {
+            const miembro = datosEconomicosMiembrosFamiliarList.value[i];
+            sumaIngresos += miembro.ingresos_mensuales;
+          }
+          sbeCamposWrapper.value.totalIngresosMensuales = sumaIngresos;
     }
 
     return {
@@ -93,6 +101,7 @@ export const useDatosEconomicos = () => {
         viewAction,
         persistAction,
         v$,
+        selectOtrosIngresosList,
         saveMiembroFamiliar,
         toast,
         obtenerMiembrosSituacionFamiliar,
