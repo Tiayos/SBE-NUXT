@@ -105,7 +105,16 @@
       "costoTotalPropiedades": "Costo total de propiedades inmobiliarias",
       "costoTotalVehiculos": "Costo total de vehículos",
       "total": "Total"
-    
+    },
+    "situacionHabitacional":{
+      "tituloPrincipal": "SITUACIÓN HABITACIONAL",
+      "titulo41": "Tenencia de la vivienda (Escoger una opción)",
+      "propia": "Propia",
+      "cedida": "Cedida",
+      "viviendaArrendada":"Vivienda Arrendada",
+      "valorPagoMensualViviendaArrendada": "Valor del pago mensual",
+      "viviendaHipotecada": "Vivienda Hipotecada",
+      "valorPagoMensualViviendaHipotecada": "Vañpr del pago mensual"
     }
   }
 }

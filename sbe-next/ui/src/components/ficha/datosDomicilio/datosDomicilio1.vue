@@ -29,6 +29,13 @@
                 optionLabel="paises"
                 optionValue="codigoPaises"
                 v-model="sbeCamposWrapper.pais"
+                @blur="
+                  storeClient.llenarCampo(
+                    sbeCampoCodigos.PAIS,
+                    sbeCamposWrapper.pais,
+                    'ENTERO'
+                  )
+                "
               >
               </Dropdown>
 
@@ -44,6 +51,13 @@
                 optionLabel="ciudad"
                 optionValue="codigoCiudad"
                 v-model="sbeCamposWrapper.ciudad"
+                @blur="
+                  storeClient.llenarCampo(
+                    sbeCampoCodigos.CIUDAD,
+                    sbeCamposWrapper.ciudad,
+                    'ENTERO'
+                  )
+                "
               >
               </Dropdown>
             </FHorizontalStack>
@@ -61,6 +75,13 @@
                 optionLabel="parroquias"
                 optionValue="codigoParroquia"
                 v-model="sbeCamposWrapper.parroquia"
+                @blur="
+                  storeClient.llenarCampo(
+                    sbeCampoCodigos.PARROQUIA,
+                    sbeCamposWrapper.parroquia,
+                    'ENTERO'
+                  )
+                "
               >
               </Dropdown>
 
@@ -75,6 +96,12 @@
                 optionLabel="descripcion"
                 optionValue="codigo"
                 v-model="sbeParametros.tipoParroquia"
+                @blur="
+                  storeClient.llenarListaParametros(
+                    sbeParametros.tipoParroquia,
+                    sbeParametrosCodigos.tiposParroquias
+                  )
+                "
               >
               </Dropdown>
             </FHorizontalStack>
@@ -88,6 +115,13 @@
                   type="text"
                   id="barrio"
                   name="barrio"
+                  @blur="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.BARRIO,
+                      sbeCamposWrapper.barrio,
+                      'TEXTO'
+                    )
+                  "
                 />
                 <FTextField
                   :label="$t('ficha.datosDomicilio.direccion')"
@@ -96,6 +130,13 @@
                   type="text"
                   id="direccion"
                   name="direccion"
+                  @blur="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.DIRECCION,
+                      sbeCamposWrapper.direccion,
+                      'TEXTO'
+                    )
+                  "
                 />
               </FFormLayoutGroup>
             </FFormLayout>
@@ -109,6 +150,13 @@
                   type="text"
                   id="tlfDomicilio"
                   name="tlfDomicilio"
+                  @blur="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.TELEFONO_DOMICILIO,
+                      sbeCamposWrapper.tlfDomicilio,
+                      'TEXTO'
+                    )
+                  "
                 />
                 <FTextField
                   :label="$t('ficha.datosDomicilio.tlfCelular')"
@@ -117,6 +165,13 @@
                   type="text"
                   id="tlfCelular"
                   name="tlfCelular"
+                  @blur="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.TELEFONO_CELULAR,
+                      sbeCamposWrapper.tlfCelular,
+                      'TEXTO'
+                    )
+                  "
                 />
                 <FTextField
                   :label="$t('ficha.datosDomicilio.whatsapp')"
@@ -125,6 +180,13 @@
                   type="text"
                   id="whatsapp"
                   name="whatsapp"
+                  @blur="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.WHATSAPP,
+                      sbeCamposWrapper.whatsapp,
+                      'TEXTO'
+                    )
+                  "
                 />
               </FFormLayoutGroup>
             </FFormLayout>
@@ -138,6 +200,13 @@
                   type="text"
                   id="correoPersonal"
                   name="correoPersonal"
+                  @blur="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.CORREO_PERSONAL,
+                      sbeCamposWrapper.correoPersonal,
+                      'TEXTO'
+                    )
+                  "
                 />
 
                 <FVerticalStack gap="4">
@@ -169,6 +238,8 @@ const {
   ciudadesList,
   parroquiasList,
   getTipoParroquiasList,
+  storeClient,
+  getOpcionesParametros,
 } = useDatosDomicilio();
 
 const open = ref(true);

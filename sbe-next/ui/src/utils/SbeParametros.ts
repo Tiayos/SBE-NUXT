@@ -5,5 +5,5 @@ interface SbeParametros {
     tipoTransporte?: number;
 
     otroIngresoMensual?: number; // si - no
-    
+    tipoTenenciaVivienda?: number;
 }

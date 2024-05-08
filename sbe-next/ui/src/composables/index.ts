@@ -36,3 +36,7 @@ export {
     useDatosEconomicos,
 } from './datosEconomicos/useDatosEconomicos'
 
+export {
+    useSituacionHabitacional,
+} from './situacionHabitacional/situacionHabitacional'
+

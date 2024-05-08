@@ -180,20 +180,14 @@ const handleChange2 = (_checked: any, newValue: any) => {
 };
 
 watch(
-  () => sbeCamposWrapper.value.costoTotalPropiedades,
-  (newValue, oldValue) => {
-    sbeCamposWrapper.value.total =
-      sbeCamposWrapper.value.costoTotalPropiedades! +
-      sbeCamposWrapper.value.costoTotalVehiculos!;
-  }
-);
-
-watch(
-  () => sbeCamposWrapper.value.costoTotalVehiculos,
-  (newValue, oldValue) => {
-    sbeCamposWrapper.value.total =
-      sbeCamposWrapper.value.costoTotalPropiedades! +
-      sbeCamposWrapper.value.costoTotalVehiculos!;
+  () => [
+    sbeCamposWrapper.value.costoTotalPropiedades,
+    sbeCamposWrapper.value.costoTotalVehiculos,
+  ],
+  ([newPropiedades, newVehiculos], [oldPropiedades, oldVehiculos]) => {
+    if (!isNaN(newPropiedades!) && !isNaN(newVehiculos!)) {
+      sbeCamposWrapper.value.total = (newPropiedades || 0) + (newVehiculos || 0);
+    }
   }
 );
 </script>

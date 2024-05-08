@@ -1,5 +1,5 @@
 
-export interface sbeParametroFicha {
+export interface sbeTipoParametroFicha {
     codigo: number,
     descripcion: string
 }

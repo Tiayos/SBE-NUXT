@@ -35,6 +35,10 @@ export const useDatosDomicilio = () => {
         getTipoParroquiasListEstudio.value = await getOpcionesParametros(sbeParametrosCodigosEnum.tiposParroquiaEstudio);
     })
 
+    watch(() => insAlumno.value.email, (newValue, oldValue) => {
+        storeClient.llenarCampo(sbeCampoCodigos.CORREO_INSTITUCIONAL, insAlumno.value.email, 'TEXTO')
+    })
+
     watch(() => sbeCamposWrapper.value, async (newValue, oldValue) => {
         if (newValue && sbeCamposWrapper.value.pais) {
             ciudadesList.value = await getCiudades(sbeCamposWrapper.value.pais);
@@ -67,7 +71,10 @@ export const useDatosDomicilio = () => {
 
         sbeCamposWrapper,
         sbeParametros,
-        selectSiNo
+        selectSiNo,
+        storeClient,
+
+        getOpcionesParametros
     }
 
 }

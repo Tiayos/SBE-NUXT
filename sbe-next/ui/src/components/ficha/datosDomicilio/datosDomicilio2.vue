@@ -15,6 +15,7 @@
         value="2005"
         name="select"
         @change="handleChange"
+        @blur="storeClient.llenarListaParametros(sbeParametros.resideOtroLugar, 2002)"
       />
       <FRadioButton
         :label="$t('app.label.no')"
@@ -24,6 +25,7 @@
         value="2006"
         :checked="sbeParametros.resideOtroLugar === 2006"
         @change="handleChange"
+        @blur="storeClient.llenarListaParametros(sbeParametros.resideOtroLugar, 2002)"
       />
     </FVerticalStack>
 
@@ -101,12 +103,15 @@
   <FichaDatosDomicilioDatosDomicilio3></FichaDatosDomicilioDatosDomicilio3>
 </template>
 <script setup lang="ts">
+import sbeParametrosCodigosEnum from "~/utils/sbeParametrosCodigos";
+
 const {
   sbeCamposWrapper,
   sbeParametros,
   paisesListEstudio,
   ciudadesListEstudio,
   parroquiasListEstudio,
+  storeClient,
 } = useDatosDomicilio();
 
 const handleChange = (_checked: any, newValue: any) => {

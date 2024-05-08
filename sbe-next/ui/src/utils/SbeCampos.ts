@@ -31,5 +31,7 @@ interface SbeCamposWrapper {
     costoTotalVehiculos?: number;
     total?: number;
 
+    valorPagoMensualArriendo?: number;
+    valorPagoMensualHipoteca?: number;
 
 }

@@ -1,4 +1,4 @@
-import { OpcionParametro } from "models/opcionesParametros/OpcionParametro.model"
+import { OpcionParametro } from "~/models/opcionesParametros/OpcionParametro.model"
 
 export const useValorParametrosService = () => {
 

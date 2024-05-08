@@ -5,6 +5,7 @@
       <FichaDatosEstudiante></FichaDatosEstudiante>
       <FichaDatosDomicilioDatosDomicilio1></FichaDatosDomicilioDatosDomicilio1>
       <FichaDatosEconomicosDatosEconomicos1></FichaDatosEconomicosDatosEconomicos1>
+      <FichaSituacionHabitacional></FichaSituacionHabitacional>
     </FVerticalStack>
   </FPage>
 </template>
