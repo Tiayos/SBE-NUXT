@@ -1,4 +1,3 @@
-¿
 <template>
   <FCard>
     <Accordion :activeIndex="1" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
@@ -29,7 +28,7 @@
                 optionLabel="paises"
                 optionValue="codigoPaises"
                 v-model="sbeCamposWrapper.pais"
-                @blur="
+                @change="
                   storeClient.llenarCampo(
                     sbeCampoCodigos.PAIS,
                     sbeCamposWrapper.pais,
@@ -51,7 +50,7 @@
                 optionLabel="ciudad"
                 optionValue="codigoCiudad"
                 v-model="sbeCamposWrapper.ciudad"
-                @blur="
+                @change="
                   storeClient.llenarCampo(
                     sbeCampoCodigos.CIUDAD,
                     sbeCamposWrapper.ciudad,
@@ -75,7 +74,7 @@
                 optionLabel="parroquias"
                 optionValue="codigoParroquia"
                 v-model="sbeCamposWrapper.parroquia"
-                @blur="
+                @change="
                   storeClient.llenarCampo(
                     sbeCampoCodigos.PARROQUIA,
                     sbeCamposWrapper.parroquia,
@@ -96,7 +95,7 @@
                 optionLabel="descripcion"
                 optionValue="codigo"
                 v-model="sbeParametros.tipoParroquia"
-                @blur="
+                @change="
                   storeClient.llenarListaParametros(
                     sbeParametros.tipoParroquia,
                     sbeParametrosCodigos.tiposParroquias

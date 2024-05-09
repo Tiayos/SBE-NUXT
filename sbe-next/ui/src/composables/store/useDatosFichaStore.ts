@@ -18,30 +18,51 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
     const sbeValorParametroFichaList = ref<sbeValorParametroFicha[]>([]);
 
     const sbeCamposWrapper = ref<SbeCamposWrapper>({
-        pais: undefined,
-        ciudad: undefined,
-        parroquia: undefined,
-        barrio: '',
-        direccion: '',
-        tlfDomicilio: '',
-        tlfCelular: '',
-        whatsapp: '',
-        correoPersonal: '',
-        correoInstitucional: '',
-        paisEstudio: undefined,
-        ciudadEstudio: undefined,
-        parroquiaEstudio: undefined,
-        barrioEstudio: '',
-        direccionEstudiante: '',
-        otraFrecuenciaEspecifique: '',
-        numeroMiembros: undefined
+    pais: undefined,
+    ciudad: undefined,
+    parroquia: undefined,
+    barrio: '',
+    direccion: '',
+    tlfDomicilio: '',
+    tlfCelular: '',
+    whatsapp: '',
+    correoPersonal: '',
+    correoInstitucional: '',
+
+    paisEstudio: undefined,
+    ciudadEstudio: undefined,
+    parroquiaEstudio: undefined,
+    barrioEstudio: '',
+    direccionEstudiante: '',
+    
+    otraFrecuenciaEspecifique: '',
+    
+    numeroMiembros: undefined,
+    totalIngresosMensuales: undefined,
+    otrosIngresosEspecifique: '',
+    valorTotalMensualOtrosIngresos:    undefined,
+
+    opcionViveGrupoFamiliarPropiedad: undefined,
+    opcionViveGrupoFamiliarVehiculos: undefined,
+    numeroPropiedades: undefined,
+    numeroVehiculos: undefined,
+
+    costoTotalPropiedades: undefined,
+    costoTotalVehiculos: undefined,
+    total: undefined,
+
+    valorPagoMensualArriendo: undefined,
+    valorPagoMensualHipoteca: undefined,
     })
 
     const sbeParametros = ref<SbeParametros>({
         tipoParroquia: undefined,
         resideOtroLugar: undefined,
         tipoParroquiaEstudio: undefined,
-        tipoTransporte: undefined
+        tipoTransporte: undefined,
+        frecuenciaTransporte: undefined,
+        otroIngresoMensual: undefined,
+        tipoTenenciaVivienda: undefined
     })
 
     const llenarCampo = (codigo: number, valor: any, tipoCampo: string) => {
@@ -60,7 +81,7 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
                         sbeValorCampoFicha1.vcf_decimal = valor;
                         break;
                 }
-                console.log(sbeValorCampoFichaList.value, 'encontrado');
+                console.log(sbeValorCampoFichaList);
                 break;
             }
         }
@@ -83,7 +104,7 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
                     break;
             }
             sbeValorCampoFichaList.value.push(sbeValorCampoFicha);
-            console.log(sbeValorCampoFichaList.value, '!!!!!!encontrado');
+            console.log(sbeValorCampoFichaList);
         }
     };
 
@@ -94,19 +115,18 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
       ) => {
         if (valorOpcion !== undefined) {
           const opcionesParametros = await getOpcionesParametros(codigoOpcionParametro);
-          llenarParametros(valorOpcion!, opcionesParametros);
+          await llenarParametros(valorOpcion!, opcionesParametros);
         }
       };
 
       const llenarParametros = (valor: number, sbeOpcionParametroFichas: OpcionParametro[]) => {
         let encontrado = false;
-    
         for (const sbeValorParametroFicha1 of sbeValorParametroFichaList.value) {
             for (const sbeOpcionParametroFicha of sbeOpcionParametroFichas) {
-                if (sbeValorParametroFicha1.opf_codigo.codigo === sbeOpcionParametroFicha.codigo) {
+                if (sbeValorParametroFicha1.opf_codigo.codigo == sbeOpcionParametroFicha.codigo) {
                     encontrado = true;
-                    sbeValorParametroFicha1.opf_codigo = { codigo: valor } as OpcionParametro; // Actualizar el valor existente
-                    console.log(sbeValorParametroFichaList.value, 'encontrado');
+                    sbeValorParametroFicha1.opf_codigo.codigo = valor; // Actualizar el valor existente
+                    console.log(sbeValorParametroFichaList.value, 'SI LO ENCONTRO Y SE ACTUALIZO');
                     break;
                 }
             }
@@ -118,10 +138,10 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
             sbeValorParametroFicha.codigo = 0;
             sbeValorParametroFicha.fis_codigo = { fis_codigo: 0 } as sbeFichaSocioeconomica; // Asigna el valor adecuado
             sbeValorParametroFicha.pel_codigo_inicio = 0;
-            sbeValorParametroFicha.opf_codigo = { codigo: valor } as OpcionParametro; // Suponiendo que así se asigna el nuevo valor
+            sbeValorParametroFicha.opf_codigo = {codigo: valor}  as OpcionParametro; // Suponiendo que así se asigna el nuevo valor
     
             sbeValorParametroFichaList.value.push(sbeValorParametroFicha);
-            console.log(sbeValorParametroFichaList.value, '!encontrado');
+            console.log(sbeValorParametroFichaList.value, 'NO ENCONTRADO E HIZO PUSH');
         };
     }
 

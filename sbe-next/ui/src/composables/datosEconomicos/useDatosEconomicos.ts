@@ -77,7 +77,20 @@ export const useDatosEconomicos = () => {
         nivelesInstruccionList.value = await getNivelInstruccion();
         parentescosList.value = await getParentescos();
         tipoEmpresaList.value = await getTipoEmpresa();
+        // auxNumeroMiembrosCompletar();
+
     })
+
+    const auxNumeroMiembrosCompletar = () => {
+        sbeCamposWrapper.value.numeroMiembros =
+          datosEconomicosMiembrosFamiliarList.value.length;
+      
+        storeClient.llenarCampo(
+          sbeCampoCodigos.NUMERO_MIEMBROS_GRUPO_FAMILIAR,
+          sbeCamposWrapper.value.numeroMiembros,
+          "ENTERO"
+        );
+      };
 
     const obtenerMiembrosSituacionFamiliar = async() =>{
         let sumaIngresos = 0;
@@ -106,7 +119,9 @@ export const useDatosEconomicos = () => {
         toast,
         obtenerMiembrosSituacionFamiliar,
         editMiembroFamiliar,
-        deleteMiembroFamiliar
+        deleteMiembroFamiliar,
+        auxNumeroMiembrosCompletar,
+        storeClient
     }
 
 }

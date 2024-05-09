@@ -126,14 +126,32 @@
           @change="() => handleChange2(2039)"
           :disabled="sbeParametros.otroIngresoMensual != 2028"
         />
-        <FCheckbox
-          :label="$t('ficha.datosEconomicos.otros')"
-          :checked="selectOtrosIngresosList.includes(2040)"
-          id="2040"
-          name="recibeDinero"
-          @change="() => handleChange2(2040)"
-          :disabled="sbeParametros.otroIngresoMensual != 2028"
-        />
+        <FHorizontalStack gap="4">
+          <FCheckbox
+            :label="$t('ficha.datosEconomicos.otros')"
+            :checked="selectOtrosIngresosList.includes(2040)"
+            id="2040"
+            name="recibeDinero"
+            @change="() => handleChange2(2040)"
+            :disabled="sbeParametros.otroIngresoMensual != 2028"
+          />
+          <FTextField
+            type="text"
+            id="otroIngresoEspecifique"
+            name="otroIngresoEspecifique"
+            autoComplete="off"
+            :disabled="!selectOtrosIngresosList.includes(2040)"
+            v-model="sbeCamposWrapper.otrosIngresosEspecifique"
+            @blur="
+              storeClient.llenarCampo(
+                sbeCampoCodigos.OTRO_INGRESO_ESPECIFIQUE,
+                sbeCamposWrapper.otrosIngresosEspecifique,
+                'TEXTO'
+              )
+            "
+          ></FTextField>
+        </FHorizontalStack>
+
         <FHorizontalStack gap="4">
           <FText as="h6" variant="headingMd" font-weight="bold">
             {{ $t("ficha.datosEconomicos.valorTotal") }}:
@@ -152,10 +170,21 @@
   <FichaDatosEconomicosDatosEconomicos33></FichaDatosEconomicosDatosEconomicos33>
 </template>
 <script setup lang="ts">
-const { sbeParametros, selectOtrosIngresosList, sbeCamposWrapper } = useDatosEconomicos();
+import sbeParametrosCodigosEnum from "~/utils/sbeParametrosCodigos";
+
+const {
+  sbeParametros,
+  selectOtrosIngresosList,
+  sbeCamposWrapper,
+  storeClient,
+} = useDatosEconomicos();
 
 const handleChange = (_checked: any, newValue: any) => {
   sbeParametros.value.otroIngresoMensual = newValue;
+  storeClient.llenarListaParametros(
+    sbeParametros.value.otroIngresoMensual,
+    sbeParametrosCodigosEnum.selectSiNoOtroIngresoMensual
+  );
 };
 
 const handleChange2 = (newValue: number) => {
@@ -174,6 +203,7 @@ watch(
     if (sbeParametros.value.otroIngresoMensual == 2029) {
       selectOtrosIngresosList.value = [];
       sbeCamposWrapper.value.valorTotalMensualOtrosIngresos = undefined;
+      sbeCamposWrapper.value.otrosIngresosEspecifique = "";
     }
   }
 );

@@ -4,6 +4,8 @@ interface SbeParametros {
     tipoParroquiaEstudio?: number;
     tipoTransporte?: number;
 
+    frecuenciaTransporte?: number;
+
     otroIngresoMensual?: number; // si - no
     tipoTenenciaVivienda?: number;
 }

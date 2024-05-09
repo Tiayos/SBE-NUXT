@@ -146,6 +146,13 @@
               type="text"
               id="otraFrecuenciaEspecifique"
               name="otraFrecuenciaEspecifique"
+              @blur="
+                storeClient.llenarCampo(
+                  sbeCampoCodigos.OTRO_TIPO_TRANSPORTE_ESPECIFIQUE,
+                  sbeCamposWrapper.otraFrecuenciaEspecifique,
+                  'TEXTO'
+                )
+              "
             />
           </FHorizontalStack>
           <br />
@@ -163,24 +170,24 @@
             id="2025"
             name="frecuenciaTransporte"
             value="2025"
-            :checked="sbeParametros.tipoTransporte === 2025"
-            @change="handleChange"
+            :checked="sbeParametros.frecuenciaTransporte === 2025"
+            @change="handleChangeFrecuencia"
           />
           <FRadioButton
             :label="$t('ficha.datosDomicilio.menosdeTres')"
             id="2026"
             name="frecuenciaTransporte"
             value="2026"
-            :checked="sbeParametros.tipoTransporte === 2026"
-            @change="handleChange"
+            :checked="sbeParametros.frecuenciaTransporte === 2026"
+            @change="handleChangeFrecuencia"
           />
           <FRadioButton
             :label="$t('ficha.datosDomicilio.masdeTres')"
             id="2027"
             name="frecuenciaTransporte"
             value="2027"
-            :checked="sbeParametros.tipoTransporte === 2027"
-            @change="handleChange"
+            :checked="sbeParametros.frecuenciaTransporte === 2027"
+            @change="handleChangeFrecuencia"
           />
         </FFormLayoutGroup>
       </FFormLayout>
@@ -188,11 +195,25 @@
   </FCardSection>
 </template>
 <script setup lang="ts">
-const { sbeCamposWrapper, sbeParametros } = useDatosDomicilio();
+import sbeParametrosCodigosEnum from "~/utils/sbeParametrosCodigos";
+
+const { sbeCamposWrapper, sbeParametros, storeClient } = useDatosDomicilio();
 const handleChange = (_checked: any, newValue: any) => {
   sbeParametros.value.tipoTransporte = newValue;
+  storeClient.llenarListaParametros(
+    sbeParametros.value.tipoTransporte,
+    sbeParametrosCodigosEnum.tipoTransporte
+  );
   if (sbeParametros.value.tipoTransporte != 2024)
     sbeCamposWrapper.value.otraFrecuenciaEspecifique = "";
+};
+
+const handleChangeFrecuencia = (_checked: any, newValue: any) => {
+  sbeParametros.value.frecuenciaTransporte = newValue;
+  storeClient.llenarListaParametros(
+    sbeParametros.value.frecuenciaTransporte,
+    sbeParametrosCodigosEnum.frecuenciaTransporte
+  );
 };
 </script>
 <style scoped></style>

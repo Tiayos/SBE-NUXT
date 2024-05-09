@@ -167,16 +167,31 @@ import { FFormLayout, Style } from '../../../../.nuxt/components'; ¿
   </FCardSection>
 </template>
 <script setup lang="ts">
-const { sbeParametros, selectOtrosIngresosList, sbeCamposWrapper } = useDatosEconomicos();
+const {
+  sbeParametros,
+  selectOtrosIngresosList,
+  sbeCamposWrapper,
+  storeClient,
+} = useDatosEconomicos();
 
 const handleChange = (_checked: any, newValue: any) => {
   sbeCamposWrapper.value.numeroPropiedades = undefined;
   sbeCamposWrapper.value.opcionViveGrupoFamiliarPropiedad = newValue;
+  storeClient.llenarCampo(
+    sbeCampoCodigos.NUMERO_INMUEBLES,
+    sbeCamposWrapper.value.opcionViveGrupoFamiliarPropiedad,
+    "NUMBER"
+  );
 };
 
 const handleChange2 = (_checked: any, newValue: any) => {
   sbeCamposWrapper.value.numeroVehiculos = undefined;
   sbeCamposWrapper.value.opcionViveGrupoFamiliarVehiculos = newValue;
+  storeClient.llenarCampo(
+    sbeCampoCodigos.NUMERO_VEHICULOS,
+    sbeCamposWrapper.value.opcionViveGrupoFamiliarPropiedad,
+    "NUMBER"
+  );
 };
 
 watch(

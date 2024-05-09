@@ -20,6 +20,7 @@ interface SbeCamposWrapper {
     
     numeroMiembros?: number;
     totalIngresosMensuales?: number;
+    otrosIngresosEspecifique: string;
     valorTotalMensualOtrosIngresos?:    number;
 
     opcionViveGrupoFamiliarPropiedad?: number

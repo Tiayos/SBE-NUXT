@@ -68,7 +68,8 @@ export const useDatosDomicilio = () => {
         paisesListEstudio,
         ciudadesListEstudio,
         parroquiasListEstudio,
-
+        getTipoParroquiasListEstudio,
+        
         sbeCamposWrapper,
         sbeParametros,
         selectSiNo,
