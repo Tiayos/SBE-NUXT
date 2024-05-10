@@ -3,6 +3,7 @@ package ec.edu.ups.ins.controller;
 import ec.edu.ups.ins.entity.dto.*;
 import ec.edu.ups.ins.service.ISituacionFamiliarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,12 @@ public class SituacionFamiliarController {
 
     @PostMapping
     public SbeSituacionFamiliarDTO saveSituacionFamiliar(@RequestBody SbeSituacionFamiliarDTO sbeSituacionFamiliarDTO){
-        return iSituacionFamiliarService.saveSituacionFamiliar(sbeSituacionFamiliarDTO);
+      return iSituacionFamiliarService.saveSituacionFamiliar(sbeSituacionFamiliarDTO);
+    }
+
+    @PutMapping
+    public void editarMiembroSituacionFamiliar(@RequestBody SbeSituacionFamiliarDTO sbeSituacionFamiliarDTO,@RequestParam Long id){
+        iSituacionFamiliarService.updateMiembroFamiliar(sbeSituacionFamiliarDTO,id);
     }
 
     @DeleteMapping

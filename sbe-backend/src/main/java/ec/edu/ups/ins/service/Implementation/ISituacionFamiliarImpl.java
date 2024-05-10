@@ -1,7 +1,7 @@
 package ec.edu.ups.ins.service.Implementation;
 
 import ec.edu.ups.ins.entity.dto.*;
-import ec.edu.ups.ins.entity.model.sbe.SbeSituacionFamiliarModel;
+import ec.edu.ups.ins.entity.model.sbe.*;
 import ec.edu.ups.ins.repository.*;
 import ec.edu.ups.ins.service.ISituacionFamiliarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,43 @@ public class ISituacionFamiliarImpl implements ISituacionFamiliarService {
 
     @Override
     public SbeSituacionFamiliarDTO saveSituacionFamiliar(SbeSituacionFamiliarDTO sbeSituacionFamiliarDTO) {
-        return SbeSituacionFamiliarDTO.toDTO(sbeSituacionFamiliarDao.save(new SbeSituacionFamiliarModel(sbeSituacionFamiliarDTO)));
+        Long ultimoId = sbeSituacionFamiliarDao.obtenerUltimoIdSitFamiliar()+1;
+        SbeSituacionFamiliarDTO sbeSituacionFamiliarDTO1 = new SbeSituacionFamiliarDTO(
+                ultimoId,
+                sbeSituacionFamiliarDTO.nombreFamiliar(),
+                sbeSituacionFamiliarDTO.fechaNacimiento(),
+                sbeSituacionFamiliarDTO.tipoSituacion(),
+                sbeSituacionFamiliarDTO.numeroIdentificacion(),
+                sbeSituacionFamiliarDTO.ingresosMensuales(),
+                sbeSituacionFamiliarDTO.sbeEstadoCivilDTO(),
+                sbeSituacionFamiliarDTO.sbeFichaSocioeconomicaDTO(),
+                sbeSituacionFamiliarDTO.sbeInstruccionDTO(),
+                sbeSituacionFamiliarDTO.sbeParentescoDTO(),
+                sbeSituacionFamiliarDTO.sbeTipoEmpresaDTO()
+        );
+
+        return SbeSituacionFamiliarDTO.toDTO(sbeSituacionFamiliarDao.save(new SbeSituacionFamiliarModel(sbeSituacionFamiliarDTO1)));
+    }
+
+    @Override
+    public void updateMiembroFamiliar(SbeSituacionFamiliarDTO sbeSituacionFamiliarDTO, Long codigo) {
+        sbeSituacionFamiliarDao.findById(codigo)
+                .map(
+                        miembroFamiliarMap -> {
+                            miembroFamiliarMap.setSifNombreFamiliar(sbeSituacionFamiliarDTO.nombreFamiliar());
+                            miembroFamiliarMap.setSifFechaNacimiento(sbeSituacionFamiliarDTO.fechaNacimiento());
+                            miembroFamiliarMap.setSifTipoSituacion(sbeSituacionFamiliarDTO.tipoSituacion());
+                            miembroFamiliarMap.setSifNumeroIdentificacion(sbeSituacionFamiliarDTO.numeroIdentificacion());
+                            miembroFamiliarMap.setSfiIngresosMensuales(sbeSituacionFamiliarDTO.ingresosMensuales());
+                            miembroFamiliarMap.setSbeEstadoCivilModel(new SbeEstadoCivilModel(sbeSituacionFamiliarDTO.sbeEstadoCivilDTO().codigo()));
+                            miembroFamiliarMap.setSbeFichaSocioeconomicaModel(new SbeFichaSocioeconomicaModel(sbeSituacionFamiliarDTO.sbeFichaSocioeconomicaDTO().fisCodigo()));
+                            miembroFamiliarMap.setSbeInstruccionModel(new SbeInstruccionModel(sbeSituacionFamiliarDTO.sbeInstruccionDTO().codigo()));
+                            miembroFamiliarMap.setSbeParentescoModel(new SbeParentescoModel(sbeSituacionFamiliarDTO.sbeParentescoDTO().codigo()));
+                            miembroFamiliarMap.setSbeTipoEmpresaModel(new SbeTipoEmpresaModel(sbeSituacionFamiliarDTO.sbeTipoEmpresaDTO().codigo()));
+                            return SbeSituacionFamiliarDTO.toDTO(sbeSituacionFamiliarDao.save(miembroFamiliarMap));
+                        }) .orElseThrow(
+                        () -> new RuntimeException("No se encontró el miembro familiar con número: ".concat(codigo.toString()))
+                );
     }
 
     @Override

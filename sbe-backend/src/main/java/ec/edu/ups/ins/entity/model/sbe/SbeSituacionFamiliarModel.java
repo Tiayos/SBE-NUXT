@@ -17,14 +17,15 @@ import java.time.LocalDateTime;
 public class SbeSituacionFamiliarModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Basic(optional = false)
     @Column(name = "SIF_CODIGO")
     private Long sifCodigo;
     @Basic(optional = false)
     @Column(name = "SIF_NOMBRE_FAMILIAR")
     private String sifNombreFamiliar;
     @Basic(optional = false)
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "SIF_FECHA_NACIMIENTO")
     private LocalDateTime sifFechaNacimiento;
     @Basic(optional = false)

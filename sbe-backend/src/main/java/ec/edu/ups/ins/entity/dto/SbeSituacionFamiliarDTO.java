@@ -1,5 +1,6 @@
 package ec.edu.ups.ins.entity.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ec.edu.ups.ins.entity.model.sbe.SbeSituacionFamiliarModel;
 import jakarta.annotation.Nullable;

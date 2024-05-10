@@ -10,6 +10,7 @@ public interface ISituacionFamiliarService {
 
     List<SbeSituacionFamiliarDTO> getSituacionesFamiliares(Long fisCodigo);
     SbeSituacionFamiliarDTO saveSituacionFamiliar(SbeSituacionFamiliarDTO sbeSituacionFamiliarDTO);
+    void updateMiembroFamiliar(SbeSituacionFamiliarDTO situacionFamiliar, Long codigo);
     void eliminarSituacionFamiliar(Long codigoSituacionFamiliar);
 
     List<SbeEstadoCivilDTO> listarEstadoCivil();

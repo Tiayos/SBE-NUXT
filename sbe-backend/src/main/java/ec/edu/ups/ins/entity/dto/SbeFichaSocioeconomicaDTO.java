@@ -34,7 +34,9 @@ public record SbeFichaSocioeconomicaDTO(
                 model.getFisFechaFinCreacion(),
                 model.getEstCodigo(),
                 model.getSolCodigo(),
-                SbeTipoFichaSocioeconomicaDTO.toDTO(model.getSbeTipoFichaSocioeconomica())
+//                model.getSbeEstadoCivilModel() != null ? SbeEstadoCivilDTO.toDTO(model.getSbeEstadoCivilModel()) : null,
+                model.getSbeTipoFichaSocioeconomicaModel() != null ? SbeTipoFichaSocioeconomicaDTO.toDTO(model.getSbeTipoFichaSocioeconomicaModel()): null
+//                SbeTipoFichaSocioeconomicaDTO.toDTO(model.getSbeTipoFichaSocioeconomica())
         );
     }
 }
