@@ -60,7 +60,7 @@ export default defineNuxtConfig({
             // SOL_FICHA_EMAIL: 'https://sol-svc.ups.edu.ec/v1/email'
     
             //* LOCALMENTE
-            SBE_FICHA: '/sbe/api/v1/ficha',
+            SBE_FICHA: '/sbe/api/v1/fichaSocioeconomica',
             SBE_ALUMNO: '/sbe/api/v1/insAlumno',
             SBE_DOMICILIO: '/sbe/api/v1/datosDomicilio',
             SBE_VALORES_CAMPO: '/sbe/api/v1/valorCampo',

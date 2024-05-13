@@ -142,7 +142,7 @@
             autoComplete="off"
             :disabled="!selectOtrosIngresosList.includes(2040)"
             v-model="sbeCamposWrapper.otrosIngresosEspecifique"
-            @blur="
+            @change="
               storeClient.llenarCampo(
                 sbeCampoCodigos.OTRO_INGRESO_ESPECIFIQUE,
                 sbeCamposWrapper.otrosIngresosEspecifique,
@@ -161,7 +161,14 @@
             inputId="minmaxfraction"
             :minFractionDigits="2"
             :maxFractionDigits="2"
-            :disabled="!selectOtrosIngresosList.includes(2040)"
+            :disabled="sbeParametros.otroIngresoMensual === 2028"
+            @change="
+              storeClient.llenarCampo(
+                sbeCampoCodigos.VALOR_TOTAL_OTROS_INGRESOS,
+                sbeCamposWrapper.valorTotalMensualOtrosIngresos,
+                'ENTERO'
+              )
+            "
           />
         </FHorizontalStack>
       </FVerticalStack>

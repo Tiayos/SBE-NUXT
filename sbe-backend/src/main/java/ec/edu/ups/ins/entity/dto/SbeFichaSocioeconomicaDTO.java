@@ -17,7 +17,11 @@ public record SbeFichaSocioeconomicaDTO(
         @JsonProperty("fecha_fin_creacion") LocalDateTime fisFechaFinCreacion,
         @JsonProperty("est_codigo") Long estCodigo,
         @JsonProperty("sol_codigo") Long solCodigo,
-        @JsonProperty("tipo_ficha") SbeTipoFichaSocioeconomicaDTO sbeTipoFichaSocioeconomicaDTO
+        @JsonProperty("tipo_ficha") SbeTipoFichaSocioeconomicaDTO sbeTipoFichaSocioeconomicaDTO,
+        @JsonProperty("pel_codigo_valido_inicio") long pelCodigoValidoInicio
+
+
+
         )
 {
 
@@ -35,7 +39,8 @@ public record SbeFichaSocioeconomicaDTO(
                 model.getEstCodigo(),
                 model.getSolCodigo(),
 //                model.getSbeEstadoCivilModel() != null ? SbeEstadoCivilDTO.toDTO(model.getSbeEstadoCivilModel()) : null,
-                model.getSbeTipoFichaSocioeconomicaModel() != null ? SbeTipoFichaSocioeconomicaDTO.toDTO(model.getSbeTipoFichaSocioeconomicaModel()): null
+                model.getSbeTipoFichaSocioeconomicaModel() != null ? SbeTipoFichaSocioeconomicaDTO.toDTO(model.getSbeTipoFichaSocioeconomicaModel()): null,
+                model.getPelCodigoValidoInicio()
 //                SbeTipoFichaSocioeconomicaDTO.toDTO(model.getSbeTipoFichaSocioeconomica())
         );
     }

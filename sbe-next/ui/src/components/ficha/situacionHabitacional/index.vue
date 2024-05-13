@@ -56,6 +56,13 @@
                         border-left: none;
                         border-right: none;
                       "
+                      @change="
+                        storeClient.llenarCampo(
+                          sbeCampoCodigos.VALOR_PAGO_MENSUAL_ARRIENDO,
+                          sbeCamposWrapper.valorPagoMensualArriendo,
+                          'DECIMAL'
+                        )
+                      "
                     />
                   </FFormLayoutGroup>
                 </FFormLayout>
@@ -82,6 +89,13 @@
                         border-left: none;
                         border-right: none;
                       "
+                      @change="
+                        storeClient.llenarCampo(
+                          sbeCampoCodigos.VALOR_PAGO_MENSUAL_HIPOTECA,
+                          sbeCamposWrapper.valorPagoMensualHipoteca,
+                          'DECIMAL'
+                        )
+                      "
                     />
                   </FFormLayoutGroup>
                 </FFormLayout>
@@ -94,13 +108,19 @@
   </FCard>
 </template>
 <script setup lang="ts">
-const { sbeCamposWrapper, sbeParametros } = useSituacionHabitacional();
+import sbeParametrosCodigosEnum from "~/utils/sbeParametrosCodigos";
+
+const { sbeCamposWrapper, sbeParametros, storeClient } = useSituacionHabitacional();
 
 const open = ref(true);
 const handleToggle = () => (open.value = !open.value);
 
 const handleChange = (newValue: any) => {
   sbeParametros.value.tipoTenenciaVivienda = newValue;
+  storeClient.llenarListaParametros(
+    sbeParametros.value.tipoTenenciaVivienda,
+    sbeParametrosCodigosEnum.tipoTenencia
+  );
   sbeCamposWrapper.value.valorPagoMensualArriendo = undefined;
   sbeCamposWrapper.value.valorPagoMensualHipoteca = undefined;
 };

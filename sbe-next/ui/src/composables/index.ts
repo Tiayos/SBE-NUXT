@@ -22,6 +22,10 @@ export {
     useDatosEconomicosService,
 } from './services/useDatosEconomicosService'
 
+export {
+    useFichaService,
+} from './services/useFichaService'
+
 //Composable
 
 export {
@@ -39,4 +43,8 @@ export {
 export {
     useSituacionHabitacional,
 } from './situacionHabitacional/situacionHabitacional'
+
+export {
+    useFicha,
+} from './ficha/ficha'
 

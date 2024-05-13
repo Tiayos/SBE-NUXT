@@ -386,7 +386,7 @@ const prepareCreate = () => {
   miembroGrupoFamiliar.value.sbe_instruccionDTO = {} as Instruccion;
   miembroGrupoFamiliar.value.sbe_parentescoDTO = {} as Parentesco;
   miembroGrupoFamiliar.value.sbe_tipo_empresa = {} as TipoEmpresa;
-  miembroGrupoFamiliar.value.estado_civil = { codigo: 7 } as EstadoCivil;
+  miembroGrupoFamiliar.value.estado_civil = { codigo: 6 } as EstadoCivil;
   miembroGrupoFamiliar.value.ficha_socioeconomica = {
     fis_codigo: 137619,
   } as FichaSocioeconomica;

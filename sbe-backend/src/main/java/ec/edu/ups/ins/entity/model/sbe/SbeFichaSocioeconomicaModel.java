@@ -60,6 +60,15 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
     private LocalDateTime audFechaModifacion;
     @Column(name = "SOL_CODIGO")
     private Long solCodigo;
+
+    @Column(name = "PEL_CODIGO_VALIDO_INICIO")
+    private long pelCodigoValidoInicio;
+
+    @Basic(optional = false)
+    @Column(name = "FIS_FECHA_ACTUALIZACION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime fisFechaActualizacion;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "TFS_CODIGO", referencedColumnName = "TFS_CODIGO")
@@ -75,7 +84,8 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
 
 
     public SbeFichaSocioeconomicaModel(Long fisCodigo, long pel_codigo, long aluCodigo,
-                                       LocalDateTime fisFecha, String fisActualizar, String fisEstado,
+                                       LocalDateTime fisFecha, LocalDateTime fisFechaActualizacion,
+                                       long pelCodigoValidoInicio, String fisActualizar, String fisEstado,
                                        short fisVersion, LocalDateTime fisFechaInicioCreacion,
                                        LocalDateTime fisFechaFinCreacion, Long estCodigo,
                                        SbeTipoFichaSocioeconomicaModel sbeTipoFichaSocioeconomicaModel, Long solCodigo) {
@@ -83,6 +93,8 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
         this.pel_codigo = pel_codigo;
         this.aluCodigo = aluCodigo;
         this.fisFecha = fisFecha;
+        this.pelCodigoValidoInicio = pelCodigoValidoInicio;
+        this.fisFechaActualizacion = fisFechaActualizacion;
         this.fisActualizar = fisActualizar;
         this.fisEstado = fisEstado;
         this.fisVersion = fisVersion;
@@ -106,6 +118,7 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
         this.estCodigo = dto.estCodigo();
         this.solCodigo = dto.solCodigo();
         this.sbeTipoFichaSocioeconomicaModel = new SbeTipoFichaSocioeconomicaModel(dto.sbeTipoFichaSocioeconomicaDTO());
+        this.pelCodigoValidoInicio = dto.pelCodigoValidoInicio();
     }
 
     public Long getSolCodigo() {
@@ -123,6 +136,7 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
         this.audAdicionado="sbermeob@ups.edu.ec";
         this.fisFecha=  LocalDateTime.now();
         this.fisFechaInicioCreacion =  LocalDateTime.now();
+        this.fisFechaActualizacion = LocalDateTime.now();
     }
 
     @PreUpdate
@@ -228,6 +242,21 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
         this.estCodigo = estCodigo;
     }
 
+    public long getPelCodigoValidoInicio() {
+        return pelCodigoValidoInicio;
+    }
+
+    public void setPelCodigoValidoInicio(long pelCodigoValidoInicio) {
+        this.pelCodigoValidoInicio = pelCodigoValidoInicio;
+    }
+
+    public LocalDateTime getFisFechaActualizacion() {
+        return fisFechaActualizacion;
+    }
+
+    public void setFisFechaActualizacion(LocalDateTime fisFechaActualizacion) {
+        this.fisFechaActualizacion = fisFechaActualizacion;
+    }
 
     public SbeTipoFichaSocioeconomicaModel getSbeTipoFichaSocioeconomica() {
         return sbeTipoFichaSocioeconomicaModel;

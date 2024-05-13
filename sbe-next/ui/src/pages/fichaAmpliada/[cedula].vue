@@ -1,5 +1,6 @@
 <template>
-  <FPage full-width>
+  <FLoading v-show="load == false" />
+  <FPage full-widt v-if="load == true">
     <FVerticalStack>
       <FichaTitulo></FichaTitulo>
       <FichaDatosEstudiante></FichaDatosEstudiante>
@@ -10,5 +11,7 @@
   </FPage>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { load } = useFicha();
+</script>
 <style scoped lang="css"></style>

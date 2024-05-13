@@ -23,8 +23,8 @@ interface SbeCamposWrapper {
     otrosIngresosEspecifique: string;
     valorTotalMensualOtrosIngresos?:    number;
 
-    opcionViveGrupoFamiliarPropiedad?: number
-    opcionViveGrupoFamiliarVehiculos?: number
+    opcionViveGrupoFamiliarPropiedad?: number;
+    opcionViveGrupoFamiliarVehiculos?: number;
     numeroPropiedades?: number;
     numeroVehiculos?: number;
 

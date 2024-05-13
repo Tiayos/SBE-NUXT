@@ -29,6 +29,13 @@ import { FFormLayout, Style } from '../../../../.nuxt/components'; ¿
                   type="number"
                   v-model="sbeCamposWrapper.numeroPropiedades"
                   v-if="sbeCamposWrapper.opcionViveGrupoFamiliarPropiedad == 1"
+                  @blur="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.NUMERO_INMUEBLES,
+                      sbeCamposWrapper.numeroPropiedades,
+                      'ENTERO'
+                    )
+                  "
                 ></FTextField>
               </FFormLayoutGroup>
             </FFormLayout>
@@ -47,6 +54,13 @@ import { FFormLayout, Style } from '../../../../.nuxt/components'; ¿
                   type="number"
                   v-model="sbeCamposWrapper.numeroPropiedades"
                   v-if="sbeCamposWrapper.opcionViveGrupoFamiliarPropiedad == 2"
+                  @blur="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.NUMERO_INMUEBLES,
+                      sbeCamposWrapper.numeroPropiedades,
+                      'ENTERO'
+                    )
+                  "
                 ></FTextField>
               </FFormLayoutGroup>
             </FFormLayout>
@@ -70,6 +84,13 @@ import { FFormLayout, Style } from '../../../../.nuxt/components'; ¿
                   type="number"
                   v-model="sbeCamposWrapper.numeroVehiculos"
                   v-if="sbeCamposWrapper.opcionViveGrupoFamiliarVehiculos == 3"
+                  @change="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.NUMERO_VEHICULOS,
+                      sbeCamposWrapper.numeroVehiculos,
+                      'ENTERO'
+                    )
+                  "
                 ></FTextField>
               </FFormLayoutGroup>
             </FFormLayout>
@@ -88,6 +109,13 @@ import { FFormLayout, Style } from '../../../../.nuxt/components'; ¿
                   type="number"
                   v-model="sbeCamposWrapper.numeroVehiculos"
                   v-if="sbeCamposWrapper.opcionViveGrupoFamiliarVehiculos == 4"
+                  @change="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.NUMERO_VEHICULOS,
+                      sbeCamposWrapper.numeroVehiculos,
+                      'ENTERO'
+                    )
+                  "
                 ></FTextField>
               </FFormLayoutGroup>
             </FFormLayout>
@@ -110,6 +138,13 @@ import { FFormLayout, Style } from '../../../../.nuxt/components'; ¿
                     border-top: none;
                     border-left: none;
                     border-right: none;
+                  "
+                  @change="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.COSTO_TOTAL_PROPIEDADES_INMOBILIARIAS,
+                      sbeCamposWrapper.costoTotalPropiedades,
+                      'ENTERO'
+                    )
                   "
                 />
               </FFormLayoutGroup>
@@ -134,6 +169,13 @@ import { FFormLayout, Style } from '../../../../.nuxt/components'; ¿
                     border-left: none;
                     border-right: none;
                   "
+                  @change="
+                    storeClient.llenarCampo(
+                      sbeCampoCodigos.COSTO_TOTAL_VEHICULOS,
+                      sbeCamposWrapper.costoTotalVehiculos,
+                      'ENTERO'
+                    )
+                  "
                 />
               </FFormLayoutGroup>
             </FFormLayout>
@@ -157,6 +199,13 @@ import { FFormLayout, Style } from '../../../../.nuxt/components'; ¿
                     border-left: none;
                     border-right: none;
                   "
+                  @change="
+                  storeClient.llenarCampo(
+                  sbeCampoCodigos.TOTAL,
+                  sbeCamposWrapper.total,
+                  'NUMBER'
+                )
+                  "
                 />
               </FFormLayoutGroup>
             </FFormLayout>
@@ -178,7 +227,7 @@ const handleChange = (_checked: any, newValue: any) => {
   sbeCamposWrapper.value.numeroPropiedades = undefined;
   sbeCamposWrapper.value.opcionViveGrupoFamiliarPropiedad = newValue;
   storeClient.llenarCampo(
-    sbeCampoCodigos.NUMERO_INMUEBLES,
+    sbeCampoCodigos.AUX_SELECT_VIVIENDA,
     sbeCamposWrapper.value.opcionViveGrupoFamiliarPropiedad,
     "NUMBER"
   );
@@ -188,7 +237,7 @@ const handleChange2 = (_checked: any, newValue: any) => {
   sbeCamposWrapper.value.numeroVehiculos = undefined;
   sbeCamposWrapper.value.opcionViveGrupoFamiliarVehiculos = newValue;
   storeClient.llenarCampo(
-    sbeCampoCodigos.NUMERO_VEHICULOS,
+    sbeCampoCodigos.AUX_SELECT_VEHICULOS,
     sbeCamposWrapper.value.opcionViveGrupoFamiliarPropiedad,
     "NUMBER"
   );
@@ -202,6 +251,7 @@ watch(
   ([newPropiedades, newVehiculos], [oldPropiedades, oldVehiculos]) => {
     if (!isNaN(newPropiedades!) && !isNaN(newVehiculos!)) {
       sbeCamposWrapper.value.total = (newPropiedades || 0) + (newVehiculos || 0);
+      
     }
   }
 );

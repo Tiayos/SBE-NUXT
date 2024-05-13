@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { SituacionFamiliar } from '~/models/datosEconomicos/situacionFamiliar.model';
+import { TipoFichaSocioeconomica } from '~/models/datosEconomicos/tipoFichaSocioeconomica';
 import { insAlumnoProjection } from '~/models/datosPersonales/alumno.model';
 import { OpcionParametro } from '~/models/opcionesParametros/OpcionParametro.model';
 import { sbeCampoFicha } from '~/models/opcionesParametros/sbeCampoFicha';
@@ -16,6 +17,22 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
 
     const sbeValorCampoFichaList = ref<sbeValorCampoFicha[]>([]);
     const sbeValorParametroFichaList = ref<sbeValorParametroFicha[]>([]);
+
+    const fichaSocioeconomica = ref<sbeFichaSocioeconomica>({
+        fis_codigo: 0,
+        pel_codigo: 0,
+        alu_codigo: 0,
+        fecha: null,
+        actualizar: '',
+        estado: '',
+        version: 5,
+        fecha_inicio_creacion: null ,
+        fecha_fin_creacion: null ,
+        est_codigo: null,
+        sol_codigo: null,
+        tipo_ficha: {codigo:5} as TipoFichaSocioeconomica,
+        pel_codigo_valido_inicio: null  
+    } as sbeFichaSocioeconomica);
 
     const sbeCamposWrapper = ref<SbeCamposWrapper>({
     pais: undefined,
@@ -81,7 +98,7 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
                         sbeValorCampoFicha1.vcf_decimal = valor;
                         break;
                 }
-                console.log(sbeValorCampoFichaList);
+                console.log(sbeValorCampoFichaList, 'SI LO ENCONTRÓ');
                 break;
             }
         }
@@ -104,7 +121,7 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
                     break;
             }
             sbeValorCampoFichaList.value.push(sbeValorCampoFicha);
-            console.log(sbeValorCampoFichaList);
+            console.log(sbeValorCampoFichaList, 'NO ENCONTRÓ');
         }
     };
 
@@ -147,6 +164,7 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
 
 
     return {
+        fichaSocioeconomica,
         insAlumno,
         cedula,
         sbeCamposWrapper,

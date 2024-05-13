@@ -1,4 +1,4 @@
-import { insAlumnoProjection } from "models/datosPersonales/alumno.model"
+import { insAlumnoProjection } from "~/models/datosPersonales/alumno.model"
 
 export const useAlumnoService = () => {
     const config = useRuntimeConfig()

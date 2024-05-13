@@ -7,7 +7,8 @@ export const useSituacionHabitacional = () => {
    
     return {
         sbeCamposWrapper,
-        sbeParametros
+        sbeParametros,
+        storeClient
     }
 
 }

@@ -4,13 +4,14 @@ export interface sbeFichaSocioeconomica {
     fis_codigo: number,
     pel_codigo: number,
     alu_codigo: number,
-    fecha: Date,
+    fecha: Date | null,
     actualizar: string,
     estado: string,
     version: number,
-    fecha_inicio_creacion: Date,
-    fecha_fin_creacion: Date ,
-    est_codigo: number,
-    sol_codigo: number,
-    tipo_ficha: TipoFichaSocioeconomica
+    fecha_inicio_creacion: Date | null,
+    fecha_fin_creacion: Date | null ,
+    est_codigo: number | null,
+    sol_codigo: number | null ,
+    tipo_ficha: TipoFichaSocioeconomica,
+    pel_codigo_valido_inicio: number | null 
 }
