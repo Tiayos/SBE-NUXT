@@ -18,8 +18,9 @@ public record SbeFichaSocioeconomicaDTO(
         @JsonProperty("est_codigo") Long estCodigo,
         @JsonProperty("sol_codigo") Long solCodigo,
         @JsonProperty("tipo_ficha") SbeTipoFichaSocioeconomicaDTO sbeTipoFichaSocioeconomicaDTO,
-        @JsonProperty("pel_codigo_valido_inicio") long pelCodigoValidoInicio
-
+        @JsonProperty("pel_codigo_valido_inicio") long pelCodigoValidoInicio,
+        @JsonProperty("aud_adicionado") String audAdicionado,
+        @JsonProperty("aud_modificado") String audModificado
 
 
         )
@@ -40,7 +41,9 @@ public record SbeFichaSocioeconomicaDTO(
                 model.getSolCodigo(),
 //                model.getSbeEstadoCivilModel() != null ? SbeEstadoCivilDTO.toDTO(model.getSbeEstadoCivilModel()) : null,
                 model.getSbeTipoFichaSocioeconomicaModel() != null ? SbeTipoFichaSocioeconomicaDTO.toDTO(model.getSbeTipoFichaSocioeconomicaModel()): null,
-                model.getPelCodigoValidoInicio()
+                model.getPelCodigoValidoInicio(),
+                model.getAudAdicionado(),
+                model.getAudModificado()
 //                SbeTipoFichaSocioeconomicaDTO.toDTO(model.getSbeTipoFichaSocioeconomica())
         );
     }

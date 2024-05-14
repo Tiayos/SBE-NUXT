@@ -12,4 +12,8 @@ public interface IFichaService {
     void updateFicha(SbeFichaSocioeconomicaDTO sbeFichaSocioeconomicaDTO, Long codigo);
     void deleteFicha(Long codigoFicha);
 
+    String estadoFicha(String cedula);
+
+    Long obtenerCodigoFichaAmpliada(String Cedula);
+
 }

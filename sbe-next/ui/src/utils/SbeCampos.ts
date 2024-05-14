@@ -1,4 +1,4 @@
-interface SbeCamposWrapper {
+export interface SbeCamposWrapper {
     pais?: number;
     ciudad?: number;
     parroquia?: number;

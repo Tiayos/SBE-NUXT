@@ -26,6 +26,10 @@ export {
     useFichaService,
 } from './services/useFichaService'
 
+export {
+    useFichaHabilitadaService,
+} from './services/SOL/useFichaHabilitadaService'
+
 //Composable
 
 export {
@@ -47,4 +51,6 @@ export {
 export {
     useFicha,
 } from './ficha/ficha'
+
+
 

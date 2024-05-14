@@ -115,6 +115,14 @@
       "valorPagoMensualViviendaArrendada": "Valor del pago mensual",
       "viviendaHipotecada": "Vivienda Hipotecada",
       "valorPagoMensualViviendaHipotecada": "Vañpr del pago mensual"
+    },
+    "fichaNoHabilitada":{
+      "fichaNoHabilitadaTitle": "Usted no dispone de una solicitud que habilite la revision de la ficha ampliada",
+      "fichaNoHabilitadaBody": "Por el momento, el ingreso de información no se encuentra habilitada.",
+      "fichaNoHabilitadaBody2": "De persistir el inconveniente, favor comunicarse con soporte técnico a los siguientes correos: ",
+      "fichaCompletadaTitle": "Usted ha completado la ficha correctamente",
+      "fichaCompletadaBody": "Debe estar pendiente de su correo electrónico. Una vez revisada su ficha por el Trabajador Social",
+      "fichaCompletadaBody2": " se le solicitará cargar información adicional ingresando al link que le enviaremos al correo."
     }
   }
 }

@@ -7,6 +7,7 @@ import { sbeCampoFicha } from '~/models/opcionesParametros/sbeCampoFicha';
 import { sbeFichaSocioeconomica } from '~/models/opcionesParametros/sbeFichaSocioeconomica.model';
 import { sbeValorCampoFicha } from '~/models/opcionesParametros/sbeValorCampoFicha.model';
 import { sbeValorParametroFicha } from '~/models/opcionesParametros/sbeValorParametroFicha';
+import { SbeCamposWrapper } from '../../utils/SbeCampos';
 
 export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
     const { getOpcionesParametros } = useValorParametrosService()
@@ -17,7 +18,9 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
 
     const sbeValorCampoFichaList = ref<sbeValorCampoFicha[]>([]);
     const sbeValorParametroFichaList = ref<sbeValorParametroFicha[]>([]);
+    const estadoFichaAmpliada = ref<string>('I');
 
+    
     const fichaSocioeconomica = ref<sbeFichaSocioeconomica>({
         fis_codigo: 0,
         pel_codigo: 0,
@@ -170,8 +173,10 @@ export const useDatosFichaStore = defineStore('useDatosFichaStore', () => {
         sbeCamposWrapper,
         sbeParametros,
         miembroGrupoFamiliar,
+        estadoFichaAmpliada,
         llenarCampo,
-        llenarListaParametros
+        llenarListaParametros,
+
     }
 
 })

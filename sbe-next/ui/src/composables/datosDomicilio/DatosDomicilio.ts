@@ -74,7 +74,6 @@ export const useDatosDomicilio = () => {
         sbeParametros,
         selectSiNo,
         storeClient,
-
         getOpcionesParametros
     }
 

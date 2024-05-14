@@ -35,6 +35,20 @@ public class FichaSocioeconomicaController {
         iFichaService.deleteFicha(codigo);
     }
 
+    @GetMapping("/estadoFicha")
+    public String obtenerEstadoFicha(@RequestParam String cedula){
+        return iFichaService.estadoFicha(cedula);
+    }
+
+    /**
+     * Metodo que me ayudará a resolver si el estudiante tiene una ficha devolviendome el codigo de la ficha
+     * o nulo en el caso que no tenga aun una ficha
+     * */
+    @GetMapping("/getCodigoFicha")
+    public Long obtenerCodigoFicha(@RequestParam String cedula){
+        Long response = iFichaService.obtenerCodigoFichaAmpliada(cedula);
+        return response;
+    }
 
 
 }

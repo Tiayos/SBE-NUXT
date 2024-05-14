@@ -13,5 +13,7 @@ export interface sbeFichaSocioeconomica {
     est_codigo: number | null,
     sol_codigo: number | null ,
     tipo_ficha: TipoFichaSocioeconomica,
-    pel_codigo_valido_inicio: number | null 
+    pel_codigo_valido_inicio: number | null,
+    aud_adicionado: string | null,
+    aud_modificado: string | null
 }

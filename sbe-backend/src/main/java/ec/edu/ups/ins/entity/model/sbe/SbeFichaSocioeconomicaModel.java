@@ -119,6 +119,8 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
         this.solCodigo = dto.solCodigo();
         this.sbeTipoFichaSocioeconomicaModel = new SbeTipoFichaSocioeconomicaModel(dto.sbeTipoFichaSocioeconomicaDTO());
         this.pelCodigoValidoInicio = dto.pelCodigoValidoInicio();
+        this.audAdicionado = dto.audAdicionado();
+        this.audModificado = dto.audModificado();
     }
 
     public Long getSolCodigo() {
@@ -133,7 +135,6 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
     public void prePersist(){
         this.audFechaAdicion = LocalDateTime.now();
         this.audEliminado = "N";
-        this.audAdicionado="sbermeob@ups.edu.ec";
         this.fisFecha=  LocalDateTime.now();
         this.fisFechaInicioCreacion =  LocalDateTime.now();
         this.fisFechaActualizacion = LocalDateTime.now();
@@ -143,7 +144,6 @@ public class SbeFichaSocioeconomicaModel implements Serializable {
     public void preUpdate(){
         this.audFechaModifacion = LocalDateTime.now();
         this.audEliminado = "N";
-        this.audModificado="sbermeob@ups.edu.ec";
     }
 
     public Long getFisCodigo() {
